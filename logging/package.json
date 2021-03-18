@@ -1,0 +1,9 @@
+{
+  "name": "fidc-logging",
+  "version": "1.0.0",
+  "description": "ForgeRock Identity Cloud Debug Tools",
+  "scripts": {},
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
