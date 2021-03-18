@@ -44,10 +44,15 @@ variable "fidc_url" {
 
 variable "fidc_api_key_id" {
   type = string
-  description = "ForgeRock Identity Cloud loggin API key ID"
+  description = "ForgeRock Identity Cloud logging API key ID"
 }
 
 variable "fidc_api_key_secret" {
   type = string
-  description = "ForgeRock Identity Cloud loggin API key secret"
+  description = "ForgeRock Identity Cloud logging API key secret"
+}
+
+variable "log_retention_in_days" {
+  type = number
+  description = "CloudWatch Log Retention"
 }

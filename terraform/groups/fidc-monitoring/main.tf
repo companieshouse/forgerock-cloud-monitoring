@@ -19,8 +19,9 @@ data "aws_subnet_ids" "subnets" {
 # Modules
 ###
 module "cloudwatch" {
-  source       = "./modules/cloudwatch"
-  service_name = var.service_name
+  source            = "./modules/cloudwatch"
+  service_name      = var.service_name
+  retention_in_days = var.log_retention_in_days
 }
 
 module "ecs" {
