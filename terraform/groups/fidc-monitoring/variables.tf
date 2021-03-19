@@ -83,4 +83,10 @@ variable "fidc_admin_client_secret" {
 }
 variable "fidc_connector_group" {
   type = string
+  default = "aws-group"
+}
+
+variable "fidc_mappings" {
+  type = string
+  default = "systemChsuserUsers_managedAlpha_user,systemChsrolesRoles_managedAlpha_role,systemChscompanyCompany_profile_managedCompany,systemChsauthcodeCompany_auth_codes_managedCompany"
 }
