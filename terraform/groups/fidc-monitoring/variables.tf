@@ -65,3 +65,22 @@ variable "health_check_rate" {
   type        = number
   description = "Rate in minutes"
 }
+
+variable "fidc_user" {
+  type = string
+}
+
+variable "fidc_password" {
+  type = string
+}
+
+variable "fidc_admin_client" {
+  type = string
+}
+
+variable "fidc_admin_client_secret" {
+  type = string
+}
+variable "fidc_connector_group" {
+  type = string
+}

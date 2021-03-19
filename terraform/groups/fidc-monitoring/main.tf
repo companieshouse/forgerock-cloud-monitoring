@@ -53,17 +53,23 @@ module "idm_logging" {
 }
 
 module "rcs_monitoring" {
-  source           = "./modules/cloudwatch-canary"
-  region           = var.region
-  environment      = var.environment
-  service_name     = var.service_name
-  canary_name      = "forgerock-rcs"
-  release_version  = var.container_image_version
-  source_code_path = "${path.module}/scripts/rcs-monitoring"
-  handler          = "index.handler"
-  runtime_version  = "syn-nodejs-puppeteer-3.1"
-  release_bucket   = var.release_bucket
-  artifact_bucket  = module.cloudwatch.canary_artifact_bucket
-  role_arn         = module.cloudwatch.canary_role_arn
-  rate_in_seconds  = var.health_check_rate
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "forgerock-rcs"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/rcs-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.1"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  rate_in_seconds          = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_connector_group     = var.fidc_connector_group
 }

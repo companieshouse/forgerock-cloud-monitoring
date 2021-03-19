@@ -45,3 +45,26 @@ variable "role_arn" {
 variable "rate_in_seconds" {
   type = number
 }
+
+variable "fidc_url" {
+  type = string
+}
+
+variable "fidc_user" {
+  type = string
+}
+
+variable "fidc_password" {
+  type = string
+}
+
+variable "fidc_admin_client" {
+  type = string
+}
+
+variable "fidc_admin_client_secret" {
+  type = string
+}
+variable "fidc_connector_group" {
+  type = string
+}
