@@ -51,3 +51,17 @@ module "idm_logging" {
   log_group_name             = var.service_name
   log_prefix                 = "idm_logging"
 }
+
+module "rcs_monitoring" {
+  source           = "./modules/cloudwatch-canary"
+  region           = var.region
+  environment      = var.environment
+  service_name     = var.service_name
+  canary_name      = "forgerock-rcs-monitoring"
+  version          = var.container_image_version
+  source_code_path = "${path.module}/../../../../rcs-monitoring/scripts"
+  release_bucket   = var.release_bucket
+  artifact_bucket  = module.cloudwatch.canary_artifact_bucket
+  role_arn         = module.cloudwatch.canary_role_arn
+  rate_in_minutes  = var.health_check_rate
+}
