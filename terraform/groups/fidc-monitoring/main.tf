@@ -57,7 +57,7 @@ module "rcs_monitoring" {
   region           = var.region
   environment      = var.environment
   service_name     = var.service_name
-  canary_name      = "forgerock-rcs-monitoring"
+  canary_name      = "forgerock-rcs"
   release_version  = var.container_image_version
   source_code_path = "${path.module}/scripts/rcs-monitoring"
   handler          = "index.handler"
