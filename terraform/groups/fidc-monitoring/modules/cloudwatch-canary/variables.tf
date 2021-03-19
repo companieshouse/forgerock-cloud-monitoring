@@ -14,7 +14,7 @@ variable "canary_name" {
   type = string
 }
 
-variable "version" {
+variable "release_version" {
   type = string
 }
 

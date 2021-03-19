@@ -58,7 +58,7 @@ module "rcs_monitoring" {
   environment      = var.environment
   service_name     = var.service_name
   canary_name      = "forgerock-rcs-monitoring"
-  version          = var.container_image_version
+  release_version  = var.container_image_version
   source_code_path = "${path.module}/../../../../rcs-monitoring/scripts"
   handler          = "index.handler"
   runtime_version  = "syn-nodejs-puppeteer-3.1"
