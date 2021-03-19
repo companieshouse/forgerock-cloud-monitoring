@@ -43,7 +43,7 @@ variable "role_arn" {
 }
 
 variable "health_check_rate" {
-  type = number
+  type = string
 }
 
 variable "fidc_url" {

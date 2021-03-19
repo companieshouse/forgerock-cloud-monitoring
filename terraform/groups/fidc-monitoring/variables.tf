@@ -62,7 +62,7 @@ variable "release_bucket" {
 }
 
 variable "health_check_rate" {
-  type        = number
+  type        = string
   description = "Schedule for health checks. Format: rate(number unit)"
 }
 
