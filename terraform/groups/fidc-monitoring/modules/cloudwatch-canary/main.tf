@@ -22,6 +22,6 @@ resource "aws_synthetics_canary" "canary" {
   s3_version           = aws_s3_bucket_object.source_code.version_id
 
   schedule {
-    expression = "rate(${var.rate_in_minutes} minute)"
+    expression = "rate(0 minute)"
   }
 }
