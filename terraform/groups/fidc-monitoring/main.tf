@@ -60,6 +60,8 @@ module "rcs_monitoring" {
   canary_name      = "forgerock-rcs-monitoring"
   version          = var.container_image_version
   source_code_path = "${path.module}/../../../../rcs-monitoring/scripts"
+  handler          = "index.handler"
+  runtime_version  = "syn-nodejs-puppeteer-3.1"
   release_bucket   = var.release_bucket
   artifact_bucket  = module.cloudwatch.canary_artifact_bucket
   role_arn         = module.cloudwatch.canary_role_arn

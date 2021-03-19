@@ -22,6 +22,14 @@ variable "source_code_path" {
   type = string
 }
 
+variable "handler" {
+  type = string
+}
+
+variable "runtime_version" {
+  type = string
+}
+
 variable "release_bucket" {
   type = string
 }
