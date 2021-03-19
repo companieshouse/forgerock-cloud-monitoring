@@ -62,6 +62,8 @@ Parameters:
     Type: String
   fidcConnectorGroup:
     Type: String
+  runtime:
+    Type: String
   healthCheckRate:
     Type: String
 Resources:
