@@ -17,76 +17,76 @@ resource "aws_cloudformation_stack" "canary" {
   name = "${var.service_name}-${var.canary_name}"
 
   parameters = {
-    ARTIFACT_BUCKET          = "s3://${var.artifact_bucket}/"
-    HANDLER                  = var.handler
-    S3_BUCKET                = var.release_bucket
-    S3_KEY                   = "${var.service_name}/${var.environment}/${var.service_name}-${var.release_version}.zip"
-    S3_VERSION               = aws_s3_bucket_object.source_code.version_id
-    ROLE_ARN                 = var.role_arn
-    CANARY_NAME              = var.canary_name
-    FIDC_URL                 = var.fidc_url
-    FIDC_USER                = var.fidc_user
-    FIDC_PASSWORD            = var.fidc_password
-    FIDC_ADMIN_CLIENT        = var.fidc_admin_client
-    FIDC_ADMIN_CLIENT_SECRET = var.fidc_admin_client_secret
-    FIDC_CONNECTOR_GROUP     = var.fidc_connector_group
-    RUNTIME                  = var.runtime_version
-    HEALTH_CHECK_RATE        = var.rate_in_seconds
+    artifactBucket        = "s3://${var.artifact_bucket}/"
+    handler               = var.handler
+    s3Bucket              = var.release_bucket
+    s3Key                 = "${var.service_name}/${var.environment}/${var.service_name}-${var.release_version}.zip"
+    s3Version             = aws_s3_bucket_object.source_code.version_id
+    roleArn               = var.role_arn
+    canaryName            = var.canary_name
+    fidcUrl               = var.fidc_url
+    fidcUser              = var.fidc_user
+    fidcPassword          = var.fidc_password
+    fidcAdminClient       = var.fidc_admin_client
+    fidcAdminClientSecret = var.fidc_admin_client_secret
+    fidcConnectorGroup    = var.fidc_connector_group
+    runtime               = var.runtime_version
+    healthCheckRate       = var.rate_in_seconds
   }
 
   template_body = <<STACK
 Parameters:
-  ARTIFACT_BUCKET:
+  artifactBucket:
     Type: String
-  HANDLER:
+  handler:
     Type: String
-  S3_BUCKET:
+  s3Bucket:
     Type: String
-  S3_KEY:
+  s3Key:
     Type: String
-  S3_VERSION:
+  s3Version:
     Type: String
-  ROLE_ARN:
+  roleArn:
     Type: String
-  CANARY_NAME:
+  canaryName:
     Type: String
-  FIDC_URL:
+  fidcUrl:
     Type: String
-  FIDC_USER:
+  fidcUser:
     Type: String
-  FIDC_PASSWORD:
+  fidcPassword:
     Type: String
-  FIDC_ADMIN_CLIENT:
+  fidcAdminClient:
     Type: String
-  FIDC_ADMIN_CLIENT_SECRET:
+  fidcAdminClientSecret:
     Type: String
-  FIDC_CONNECTOR_GROUP:
+  fidcConnectorGroup:
     Type: String
-  HEALTH_CHECK_RATE:
+  healthCheckRate:
     Type: String
 Resources:
   Canary:
     Type: AWS::Synthetics::Canary
     Properties: 
-      ArtifactS3Location: !Ref ARTIFACT_BUCKET
+      ArtifactS3Location: !Ref artifactBucket
       Code: 
-        Handler: !Ref HANDLER
-        S3Bucket: !Ref S3_BUCKET
-        S3Key: !Ref S3_KEY
-        S3ObjectVersion: !Ref S3_VERSION
-      ExecutionRoleArn: !Ref ROLE_ARN
-      Name: !Ref CANARY_NAME
+        Handler: !Ref handler
+        S3Bucket: !Ref s3Bucket
+        S3Key: !Ref s3Key
+        S3ObjectVersion: !Ref s3Version
+      ExecutionRoleArn: !Ref roleArn
+      Name: !Ref canaryName
       RunConfig: 
         EnvironmentVariables:
-          FIDC_URL: !Ref FIDC_URL
-          USER: !Ref FIDC_USER
-          PASSWORD: !Ref FIDC_PASSWORD
-          ADMIN_CLIENT: !Ref FIDC_ADMIN_CLIENT
-          ADMIN_CLIENT_SECRET: !Ref FIDC_ADMIN_CLIENT_SECRET
-          CONNECTOR_GROUP: !Ref FIDC_CONNECTOR_GROUP
-      RuntimeVersion: !Ref RUNTIME
+          FIDC_URL: !Ref fidcUrl
+          USER: !Ref fidcUser
+          PASSWORD: !Ref fidcPassword
+          ADMIN_CLIENT: !Ref fidcAdminClient
+          ADMIN_CLIENT_SECRET: !Ref fidcAdminClientSecret
+          CONNECTOR_GROUP: !Ref fidcConnectorGroup
+      RuntimeVersion: !Ref runtime
       Schedule: 
-        DurationInSeconds: !Ref HEALTH_CHECK_RATE
+        DurationInSeconds: !Ref healthCheckRate
       StartCanaryAfterCreation: true
 STACK
 }
