@@ -65,5 +65,5 @@ module "rcs_monitoring" {
   release_bucket   = var.release_bucket
   artifact_bucket  = module.cloudwatch.canary_artifact_bucket
   role_arn         = module.cloudwatch.canary_role_arn
-  rate_in_minutes  = var.health_check_rate
+  rate_in_seconds  = var.health_check_rate
 }

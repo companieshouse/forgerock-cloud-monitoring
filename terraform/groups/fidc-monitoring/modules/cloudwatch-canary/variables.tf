@@ -42,6 +42,6 @@ variable "role_arn" {
   type = string
 }
 
-variable "rate_in_minutes" {
+variable "rate_in_seconds" {
   type = number
 }
