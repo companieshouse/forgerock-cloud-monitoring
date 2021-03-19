@@ -64,8 +64,8 @@ Parameters:
     Type: String
   HEALTH_CHECK_RATE:
     Type: String
-Resources
-  canary:
+Resources:
+  Canary:
     Type: AWS::Synthetics::Canary
     Properties: 
       ArtifactS3Location: !Ref ARTIFACT_BUCKET
