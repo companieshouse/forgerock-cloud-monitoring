@@ -65,7 +65,7 @@ module "rcs_monitoring" {
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
-  rate_in_seconds          = var.health_check_rate
+  health_check_rate        = var.health_check_rate
   fidc_url                 = var.fidc_url
   fidc_user                = var.fidc_user
   fidc_password            = var.fidc_password
