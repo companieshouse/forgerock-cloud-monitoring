@@ -63,7 +63,7 @@ variable "release_bucket" {
 
 variable "health_check_rate" {
   type        = number
-  description = "Rate in minutes"
+  description = "Schedule for health checks. Format: rate(number unit)"
 }
 
 variable "fidc_user" {

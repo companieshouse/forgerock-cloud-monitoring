@@ -31,7 +31,7 @@ resource "aws_cloudformation_stack" "canary" {
     fidcAdminClientSecret = var.fidc_admin_client_secret
     fidcConnectorGroup    = var.fidc_connector_group
     runtime               = var.runtime_version
-    healthCheckRate       = var.rate_in_seconds
+    healthCheckRate       = var.health_check_rate
   }
 
   template_body = <<STACK
@@ -88,7 +88,7 @@ Resources:
           CONNECTOR_GROUP: !Ref fidcConnectorGroup
       RuntimeVersion: !Ref runtime
       Schedule: 
-        DurationInSeconds: !Ref healthCheckRate
+        Expression: !Ref healthCheckRate
       StartCanaryAfterCreation: true
 STACK
 }

@@ -42,7 +42,7 @@ variable "role_arn" {
   type = string
 }
 
-variable "rate_in_seconds" {
+variable "health_check_rate" {
   type = number
 }
 
