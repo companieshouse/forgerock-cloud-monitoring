@@ -1,5 +1,9 @@
-node_modules
-.env
+# Logging
+logging/node_modules
+logging/.env
 
+# Terraform
 .terraform
 *tfplan
+
+.DS_Store

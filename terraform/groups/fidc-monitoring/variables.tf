@@ -43,16 +43,44 @@ variable "fidc_url" {
 }
 
 variable "fidc_api_key_id" {
-  type = string
+  type        = string
   description = "ForgeRock Identity Cloud logging API key ID"
 }
 
 variable "fidc_api_key_secret" {
-  type = string
+  type        = string
   description = "ForgeRock Identity Cloud logging API key secret"
 }
 
 variable "log_retention_in_days" {
-  type = number
+  type        = number
   description = "CloudWatch Log Retention"
+}
+
+variable "release_bucket" {
+  type = string
+}
+
+variable "health_check_rate" {
+  type        = string
+  description = "Schedule for health checks. Format: rate(number unit)"
+}
+
+variable "fidc_user" {
+  type = string
+}
+
+variable "fidc_password" {
+  type = string
+}
+
+variable "fidc_admin_client" {
+  type = string
+}
+
+variable "fidc_admin_client_secret" {
+  type = string
+}
+variable "fidc_connector_group" {
+  type = string
 }
