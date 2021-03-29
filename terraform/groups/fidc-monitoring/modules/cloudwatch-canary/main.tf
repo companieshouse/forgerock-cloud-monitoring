@@ -92,3 +92,18 @@ Resources:
       StartCanaryAfterCreation: true
 STACK
 }
+
+resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
+  alarm_name          = var.canary_name
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "SuccessPercent"
+  namespace           = "CloudWatchSynthetics"
+  period              = "300"
+  statistic           = "Average"
+  threshold           = "100"
+  alarm_description   = "This metric monitors canary success percentage"
+  dimensions = {
+    CanaryName = var.canary_name
+  }
+}
