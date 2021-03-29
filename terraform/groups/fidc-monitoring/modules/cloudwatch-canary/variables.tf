@@ -65,6 +65,6 @@ variable "fidc_admin_client" {
 variable "fidc_admin_client_secret" {
   type = string
 }
-variable "fidc_connector_group" {
+variable "fidc_monitored_component" {
   type = string
 }
