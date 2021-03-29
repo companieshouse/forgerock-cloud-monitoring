@@ -94,6 +94,9 @@ STACK
 }
 
 resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
+  depends_on = [
+    aws_cloudformation_stack.canary
+  ]
   alarm_name          = var.canary_name
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = "1"
@@ -103,6 +106,8 @@ resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
   statistic           = "Average"
   threshold           = "100"
   alarm_description   = "This metric monitors canary success percentage"
+  actions_enabled     = true
+  alarm_actions       = [var.sns_topic_arn]
   dimensions = {
     CanaryName = var.canary_name
   }
