@@ -97,7 +97,7 @@ resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
   depends_on = [
     aws_cloudformation_stack.canary
   ]
-  alarm_name          = var.canary_name
+  alarm_name          = "${var.environment}-${var.canary_name}"
   namespace           = "CloudWatchSynthetics"
   statistic           = "Average"
   metric_name         = "SuccessPercent"
