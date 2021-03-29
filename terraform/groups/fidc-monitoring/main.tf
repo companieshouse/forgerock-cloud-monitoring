@@ -26,6 +26,12 @@ module "cloudwatch" {
   retention_in_days = var.log_retention_in_days
 }
 
+module "alerting" {
+  source                 = "./modules/sns"
+  service_name           = var.service_name
+  alerting_email_address = var.alerting_email_address
+}
+
 module "ecs" {
   source       = "./modules/ecs"
   service_name = var.service_name

@@ -82,11 +82,16 @@ variable "fidc_admin_client_secret" {
   type = string
 }
 variable "fidc_connector_group" {
-  type = string
+  type    = string
   default = "aws-group"
 }
 
 variable "fidc_mappings" {
-  type = string
+  type    = string
   default = "systemChsuserUsers_managedAlpha_user,systemChsrolesRoles_managedAlpha_role,systemChscompanyCompany_profile_managedCompany,systemChsauthcodeCompany_auth_codes_managedCompany"
+}
+
+variable "alerting_name_address" {
+  type        = string
+  description = "Email address for sending alert notifications"
 }
