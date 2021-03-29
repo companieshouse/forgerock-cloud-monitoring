@@ -92,3 +92,24 @@ Resources:
       StartCanaryAfterCreation: true
 STACK
 }
+
+resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
+  depends_on = [
+    aws_cloudformation_stack.canary
+  ]
+  alarm_name          = "${var.environment}-${var.canary_name}"
+  namespace           = "CloudWatchSynthetics"
+  statistic           = "Average"
+  metric_name         = "SuccessPercent"
+  comparison_operator = "LessThanThreshold"
+  threshold           = "100"
+  evaluation_periods  = "1"
+  period              = "300" # 5 minutes
+  alarm_description   = "This metric monitors canary success percentage"
+  treat_missing_data  = "ignore" # Persist alarm state if health check rate is greater than 5 minutes
+  actions_enabled     = true
+  alarm_actions       = [var.sns_topic_arn]
+  dimensions = {
+    CanaryName = var.canary_name
+  }
+}

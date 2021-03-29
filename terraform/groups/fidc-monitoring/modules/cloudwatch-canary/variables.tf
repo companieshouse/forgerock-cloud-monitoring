@@ -68,3 +68,7 @@ variable "fidc_admin_client_secret" {
 variable "fidc_monitored_component" {
   type = string
 }
+
+variable "sns_topic_arn" {
+  type = string
+}

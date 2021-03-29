@@ -26,6 +26,12 @@ module "cloudwatch" {
   retention_in_days = var.log_retention_in_days
 }
 
+module "alerting" {
+  source                 = "./modules/sns"
+  service_name           = var.service_name
+  alerting_email_address = var.alerting_email_address
+}
+
 module "ecs" {
   source       = "./modules/ecs"
   service_name = var.service_name
@@ -72,6 +78,7 @@ module "rcs_monitoring" {
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_connector_group
+  sns_topic_arn            = module.alerting.sns_topic_arn
 }
 
 module "mappings_monitoring" {
@@ -94,4 +101,5 @@ module "mappings_monitoring" {
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_mappings
+  sns_topic_arn            = module.alerting.sns_topic_arn
 }
