@@ -5,3 +5,4 @@ task_memory = 1024
 log_retention_in_days = 5
 release_bucket = "staging-eu-west-2.release.ch.gov.uk"
 health_check_rate = "rate(30 minutes)"
+alerting_email_address = "ch-account-build-noti-aaaadcghw2g4ffr2eurfwnub6e@companieshouse.slack.com"
