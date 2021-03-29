@@ -91,7 +91,7 @@ variable "fidc_mappings" {
   default = "systemChsuserUsers_managedAlpha_user,systemChsrolesRoles_managedAlpha_role,systemChscompanyCompany_profile_managedCompany,systemChsauthcodeCompany_auth_codes_managedCompany"
 }
 
-variable "alerting_name_address" {
+variable "alerting_email_address" {
   type        = string
   description = "Email address for sending alert notifications"
 }
