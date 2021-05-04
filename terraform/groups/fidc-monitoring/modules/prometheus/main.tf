@@ -42,7 +42,6 @@ resource "aws_instance" "prometheus" {
   subnet_id              = element(var.subnet_ids, 0)
   user_data_base64       = data.template_cloudinit_config.prometheus.rendered
   vpc_security_group_ids = [aws_security_group.instance.id]
-  key_name               = "amido"
 
   root_block_device {
     volume_size = local.ami_root_block_device.ebs.volume_size
