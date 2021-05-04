@@ -47,7 +47,7 @@ module "idm_logging" {
   ecs_cluster_id             = module.ecs.cluster_id
   ecs_task_role_arn          = module.ecs.task_role_arn
   ecs_task_security_group_id = module.ecs.task_security_group_id
-  container_image_version    = "logging-${var.container_image_version}"
+  container_image_version    = var.container_image_version
   ecr_url                    = var.ecr_url
   task_cpu                   = var.task_cpu
   task_memory                = var.task_memory
