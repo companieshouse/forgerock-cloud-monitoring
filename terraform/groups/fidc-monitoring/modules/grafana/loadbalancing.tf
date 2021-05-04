@@ -1,5 +1,5 @@
 resource "aws_lb" "grafana" {
-  name               = var.service_name
+  name               = "${var.service_name}-grafana"
   load_balancer_type = "application"
   internal           = true
   subnets            = var.subnet_ids
@@ -7,7 +7,7 @@ resource "aws_lb" "grafana" {
 }
 
 resource "aws_lb_target_group" "grafana" {
-  name        = var.service_name
+  name        = "${var.service_name}-grafana"
   port        = 3000
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
