@@ -47,7 +47,7 @@ module "idm_logging" {
   ecs_cluster_id             = module.ecs.cluster_id
   ecs_task_role_arn          = module.ecs.task_role_arn
   ecs_task_security_group_id = module.ecs.task_security_group_id
-  container_image_version    = var.container_image_version
+  container_image_version    = "logging-${var.container_image_version}"
   ecr_url                    = var.ecr_url
   task_cpu                   = var.task_cpu
   task_memory                = var.task_memory
@@ -102,4 +102,13 @@ module "mappings_monitoring" {
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_mappings
   sns_topic_arn            = module.alerting.sns_topic_arn
+}
+
+module "grafana" {
+  source        = "./modules/grafana"
+  service_name  = var.service_name
+  vpc_id        = data.aws_vpc.vpc.id
+  vpc_cidr      = data.aws_vpc.vpc.cidr_block
+  subnet_ids    = data.aws_subnet_ids.subnets.ids
+  instance_type = var.grafana_instance_type
 }
