@@ -95,3 +95,13 @@ variable "alerting_email_address" {
   type        = string
   description = "Email address for sending alert notifications"
 }
+
+variable "grafana_instance_type" {
+  type    = string
+  default = "Instance type to use for Grafana"
+}
+
+variable "prometheus_instance_type" {
+  type    = string
+  default = "Instance type to use for Prometheus"
+}

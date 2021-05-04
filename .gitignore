@@ -5,5 +5,7 @@ logging/.env
 # Terraform
 .terraform
 *tfplan
+local.auto.tfvars
 
 .DS_Store
+*.zip
