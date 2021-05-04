@@ -6,6 +6,10 @@ variable "vpc_id" {
   type = string
 }
 
+variable "vpn_cidrs" {
+  type = list(string)
+}
+
 variable "subnet_ids" {
   type = list(any)
 }

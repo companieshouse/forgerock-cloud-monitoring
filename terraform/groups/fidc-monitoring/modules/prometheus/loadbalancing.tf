@@ -42,7 +42,7 @@ resource "aws_security_group" "prometheus_lb" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # TODO: Lock down to VPN
+    cidr_blocks = concat(var.vpn_cidrs, ["${var.grafana_ip}/32"])
   }
 
   egress {

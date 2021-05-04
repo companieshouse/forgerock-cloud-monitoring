@@ -42,7 +42,7 @@ resource "aws_security_group" "grafana_lb" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # TODO: Lock down to VPN
+    cidr_blocks = var.vpn_cidrs
   }
 
   egress {

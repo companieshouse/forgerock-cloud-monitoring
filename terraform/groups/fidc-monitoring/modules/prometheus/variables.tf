@@ -6,6 +6,10 @@ variable "vpc_id" {
   type = string
 }
 
+variable "vpn_cidrs" {
+  type = list(string)
+}
+
 variable "subnet_ids" {
   type = list(any)
 }
@@ -23,5 +27,9 @@ variable "api_key_secret" {
 }
 
 variable "fidc_domain" {
+  type = string
+}
+
+variable "grafana_ip" {
   type = string
 }
