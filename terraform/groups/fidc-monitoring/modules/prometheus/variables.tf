@@ -13,3 +13,15 @@ variable "subnet_ids" {
 variable "instance_type" {
   type = string
 }
+
+variable "api_key_id" {
+  type = string
+}
+
+variable "api_key_secret" {
+  type = string
+}
+
+variable "fidc_domain" {
+  type = string
+}

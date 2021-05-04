@@ -108,7 +108,17 @@ module "grafana" {
   source        = "./modules/grafana"
   service_name  = var.service_name
   vpc_id        = data.aws_vpc.vpc.id
-  vpc_cidr      = data.aws_vpc.vpc.cidr_block
   subnet_ids    = data.aws_subnet_ids.subnets.ids
   instance_type = var.grafana_instance_type
+}
+
+module "prometheus" {
+  source         = "./modules/prometheus"
+  service_name   = var.service_name
+  vpc_id         = data.aws_vpc.vpc.id
+  subnet_ids     = data.aws_subnet_ids.subnets.ids
+  instance_type  = var.prometheus_instance_type
+  api_key_id     = var.fidc_api_key_id
+  api_key_secret = var.fidc_api_key_secret
+  fidc_domain    = replace(var.fidc_url, "https://", "")
 }

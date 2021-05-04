@@ -100,3 +100,8 @@ variable "grafana_instance_type" {
   type    = string
   default = "Instance type to use for Grafana"
 }
+
+variable "prometheus_instance_type" {
+  type    = string
+  default = "Instance type to use for Prometheus"
+}

@@ -6,3 +6,4 @@ log_retention_in_days = 5
 release_bucket = "development-eu-west-2.release.ch.gov.uk"
 health_check_rate = "rate(30 minutes)"
 grafana_instance_type = "t2.micro"
+prometheus_instance_type = "t2.micro"
