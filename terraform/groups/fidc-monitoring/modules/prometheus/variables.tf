@@ -33,3 +33,7 @@ variable "fidc_domain" {
 variable "grafana_ip" {
   type = string
 }
+
+variable "ami_account_id" {
+  type = string
+}

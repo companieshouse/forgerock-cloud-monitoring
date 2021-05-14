@@ -105,12 +105,13 @@ module "mappings_monitoring" {
 }
 
 module "grafana" {
-  source        = "./modules/grafana"
-  service_name  = var.service_name
-  vpc_id        = data.aws_vpc.vpc.id
-  subnet_ids    = data.aws_subnet_ids.subnets.ids
-  instance_type = var.grafana_instance_type
-  vpn_cidrs     = values(data.terraform_remote_state.networking.outputs.vpn_cidrs)
+  source         = "./modules/grafana"
+  service_name   = var.service_name
+  vpc_id         = data.aws_vpc.vpc.id
+  subnet_ids     = data.aws_subnet_ids.subnets.ids
+  instance_type  = var.grafana_instance_type
+  vpn_cidrs      = values(data.terraform_remote_state.networking.outputs.vpn_cidrs)
+  ami_account_id = var.ami_account_id
 }
 
 module "prometheus" {
@@ -124,4 +125,5 @@ module "prometheus" {
   api_key_secret = var.fidc_api_key_secret
   fidc_domain    = replace(var.fidc_url, "https://", "")
   grafana_ip     = module.grafana.private_ip
+  ami_account_id = var.ami_account_id
 }

@@ -17,3 +17,7 @@ variable "subnet_ids" {
 variable "instance_type" {
   type = string
 }
+
+variable "ami_account_id" {
+  type = string
+}
