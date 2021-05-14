@@ -3,7 +3,7 @@ locals {
 }
 
 data "aws_ami" "prometheus" {
-  owners      = ["self"]
+  owners      = [var.ami_account_id]
   most_recent = true
   name_regex  = "^prometheus-ami-\\d.\\d.\\d$"
 
