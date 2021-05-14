@@ -34,6 +34,10 @@ variable "grafana_ip" {
   type = string
 }
 
+variable "ami_account_id" {
+  type = string
+}
+
 variable "domain_name" {
   type = string
 }

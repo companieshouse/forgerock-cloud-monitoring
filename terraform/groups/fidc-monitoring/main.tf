@@ -111,6 +111,7 @@ module "grafana" {
   subnet_ids            = data.aws_subnet_ids.subnets.ids
   instance_type         = var.grafana_instance_type
   vpn_cidrs             = values(data.terraform_remote_state.networking.outputs.vpn_cidrs)
+  ami_account_id        = var.ami_account_id
   domain_name           = var.domain_name
   create_route53_record = var.create_route53_record
   route53_zone          = var.route53_zone
@@ -129,6 +130,7 @@ module "prometheus" {
   api_key_secret        = var.fidc_api_key_secret
   fidc_domain           = replace(var.fidc_url, "https://", "")
   grafana_ip            = module.grafana.private_ip
+  ami_account_id        = var.ami_account_id
   domain_name           = var.domain_name
   create_route53_record = var.create_route53_record
   route53_zone          = var.route53_zone

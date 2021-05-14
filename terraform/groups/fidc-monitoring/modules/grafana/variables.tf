@@ -18,6 +18,10 @@ variable "instance_type" {
   type = string
 }
 
+variable "ami_account_id" {
+  type = string
+}
+
 variable "domain_name" {
   type = string
 }
