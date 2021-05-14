@@ -7,3 +7,7 @@ release_bucket = "staging-eu-west-2.release.ch.gov.uk"
 health_check_rate = "rate(30 minutes)"
 grafana_instance_type = "t2.micro"
 prometheus_instance_type = "t2.micro"
+domain_name = "company-information.service.gov.uk"
+create_certificate = false
+certificate_domain = "*.companieshouse.gov.uk"
+create_route53_record = false

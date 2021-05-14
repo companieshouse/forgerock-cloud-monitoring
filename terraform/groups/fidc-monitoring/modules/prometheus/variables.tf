@@ -37,3 +37,23 @@ variable "grafana_ip" {
 variable "ami_account_id" {
   type = string
 }
+
+variable "domain_name" {
+  type = string
+}
+
+variable "create_route53_record" {
+  type = bool
+}
+
+variable "route53_zone" {
+  type = string
+}
+
+variable "create_certificate" {
+  type = bool
+}
+
+variable "certificate_domain" {
+  type = string
+}
