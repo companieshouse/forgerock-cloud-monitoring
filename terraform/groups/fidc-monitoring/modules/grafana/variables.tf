@@ -17,3 +17,23 @@ variable "subnet_ids" {
 variable "instance_type" {
   type = string
 }
+
+variable "domain_name" {
+  type = string
+}
+
+variable "create_route53_record" {
+  type = bool
+}
+
+variable "route53_zone" {
+  type = string
+}
+
+variable "create_certificate" {
+  type = bool
+}
+
+variable "certificate_domain" {
+  type = string
+}

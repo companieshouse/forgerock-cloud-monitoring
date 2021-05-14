@@ -105,3 +105,30 @@ variable "prometheus_instance_type" {
   type    = string
   default = "Instance type to use for Prometheus"
 }
+
+variable "route53_zone" {
+  type        = string
+  description = "The Route53 hosted zone to use for DNS records"
+  default     = "N/A"
+}
+
+variable "create_route53_record" {
+  type        = bool
+  description = "Should a Route53 record be created"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "The domain name to use for the application"
+}
+
+variable "create_certificate" {
+  type        = bool
+  description = "Should a Amazon SSL certificate be created"
+}
+
+variable "certificate_domain" {
+  type        = string
+  description = "The domain used to look up existing certificates"
+  default     = "N/A"
+}
