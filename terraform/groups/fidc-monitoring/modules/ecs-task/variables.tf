@@ -45,6 +45,15 @@ variable "fidc_api_key_id" {
   type = string
 }
 
+variable "tags" {
+  type = object({
+    Environment    = string
+    Service        = string
+    ServiceSubType = string
+    Team           = string
+  })
+}
+
 variable "fidc_api_key_secret" {
   type = string
 }

@@ -13,3 +13,12 @@ variable "service_name" {
 variable "retention_in_days" {
   type = number
 }
+
+variable "tags" {
+  type = object({
+    Environment    = string
+    Service        = string
+    ServiceSubType = string
+    Team           = string
+  })
+}

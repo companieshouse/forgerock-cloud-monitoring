@@ -3,6 +3,8 @@
 ###
 resource "aws_ecs_cluster" "monitoring" {
   name = var.service_name
+
+  tags = var.tags
 }
 
 ###
@@ -19,6 +21,8 @@ resource "aws_security_group" "ecs_tasks" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "ecs_task_execution_role" {
@@ -38,6 +42,8 @@ data "aws_iam_policy_document" "ecs_task_execution_role" {
 resource "aws_iam_role" "ecs_task_execution_role" {
   name               = var.service_name
   assume_role_policy = data.aws_iam_policy_document.ecs_task_execution_role.json
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {

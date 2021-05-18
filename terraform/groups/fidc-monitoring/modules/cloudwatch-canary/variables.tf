@@ -72,3 +72,12 @@ variable "fidc_monitored_component" {
 variable "sns_topic_arn" {
   type = string
 }
+
+variable "tags" {
+  type = object({
+    Environment    = string
+    Service        = string
+    ServiceSubType = string
+    Team           = string
+  })
+}
