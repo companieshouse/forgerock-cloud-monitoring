@@ -1,5 +1,7 @@
 resource "aws_sns_topic" "alerting" {
   name = var.service_name
+
+  tags = var.tags
 }
 
 resource "aws_sns_topic_subscription" "alerting" {

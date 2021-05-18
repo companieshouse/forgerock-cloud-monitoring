@@ -33,6 +33,8 @@ resource "aws_security_group" "instance" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = var.tags
 }
 
 resource "aws_instance" "grafana" {
@@ -47,7 +49,7 @@ resource "aws_instance" "grafana" {
     volume_size = local.ami_root_block_device.ebs.volume_size
   }
 
-  tags = {
+  tags = merge(var.tags, {
     Name = "${var.service_name}-grafana"
-  }
+  })
 }

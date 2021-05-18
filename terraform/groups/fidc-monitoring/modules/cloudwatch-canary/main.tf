@@ -9,6 +9,8 @@ resource "aws_s3_bucket_object" "source_code" {
   key    = "${var.service_name}/${var.environment}/${var.canary_name}-${var.release_version}.zip"
   source = "${path.module}/${var.canary_name}.zip"
   etag   = data.archive_file.source_code.output_md5
+
+  tags = var.tags
 }
 
 # Using CloudFormation as canary environment variables
@@ -32,6 +34,10 @@ resource "aws_cloudformation_stack" "canary" {
     fidcMonitoredComponent = var.fidc_monitored_component
     runtime                = var.runtime_version
     healthCheckRate        = var.health_check_rate
+    tagEnvironment         = var.tags["Environment"]
+    tagService             = var.tags["Service"]
+    tagServiceSubType      = var.tags["ServiceSubType"]
+    tagTeam                = var.tags["Team"]
   }
 
   template_body = <<STACK
@@ -66,6 +72,14 @@ Parameters:
     Type: String
   healthCheckRate:
     Type: String
+  tagEnvironment:
+    Type: String
+  tagService:
+    Type: String
+  tagServiceSubType:
+    Type: String
+  tagTeam:
+    Type: String
 Resources:
   Canary:
     Type: AWS::Synthetics::Canary
@@ -90,7 +104,18 @@ Resources:
       Schedule: 
         Expression: !Ref healthCheckRate
       StartCanaryAfterCreation: true
+      Tags:
+        - Key: Environment
+          Value: !Ref tagEnvironment
+        - Key: Service
+          Value: !Ref tagService
+        - Key: ServiceSubType
+          Value: !Ref tagServiceSubType
+        - Key: Team
+          Value: !Ref tagTeam
 STACK
+
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
@@ -112,4 +137,6 @@ resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
   dimensions = {
     CanaryName = var.canary_name
   }
+
+  tags = var.tags
 }

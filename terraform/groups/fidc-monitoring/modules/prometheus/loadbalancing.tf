@@ -12,6 +12,8 @@ resource "aws_acm_certificate" "certificate" {
   count             = var.create_certificate ? 1 : 0
   domain_name       = "${var.service_name}-prometheus.${var.domain_name}"
   validation_method = "DNS"
+
+  tags = var.tags
 }
 
 resource "aws_route53_record" "certificate_validation" {
@@ -46,6 +48,8 @@ resource "aws_lb" "prometheus" {
   internal           = true
   subnets            = var.subnet_ids
   security_groups    = [aws_security_group.prometheus_lb.id]
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group" "prometheus" {
@@ -62,6 +66,8 @@ resource "aws_lb_target_group" "prometheus" {
     path                = "/graph"
     interval            = 60
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_target_group_attachment" "prometheus" {
@@ -126,4 +132,6 @@ resource "aws_security_group" "prometheus_lb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = var.tags
 }

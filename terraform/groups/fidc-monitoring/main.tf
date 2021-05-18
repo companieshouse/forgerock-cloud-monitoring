@@ -24,18 +24,21 @@ module "cloudwatch" {
   environment       = var.environment
   service_name      = var.service_name
   retention_in_days = var.log_retention_in_days
+  tags              = local.common_tags
 }
 
 module "alerting" {
   source                 = "./modules/sns"
   service_name           = var.service_name
   alerting_email_address = var.alerting_email_address
+  tags                   = local.common_tags
 }
 
 module "ecs" {
   source       = "./modules/ecs"
   service_name = var.service_name
   vpc_id       = data.aws_vpc.vpc.id
+  tags         = local.common_tags
 }
 
 module "idm_logging" {
@@ -56,6 +59,7 @@ module "idm_logging" {
   fidc_api_key_secret        = var.fidc_api_key_secret
   log_group_name             = var.service_name
   log_prefix                 = "idm_logging"
+  tags                       = local.common_tags
 }
 
 module "rcs_monitoring" {
@@ -79,6 +83,7 @@ module "rcs_monitoring" {
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_connector_group
   sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
 }
 
 module "mappings_monitoring" {
@@ -102,6 +107,7 @@ module "mappings_monitoring" {
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_mappings
   sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
 }
 
 module "grafana" {
@@ -117,6 +123,7 @@ module "grafana" {
   route53_zone          = var.route53_zone
   create_certificate    = var.create_certificate
   certificate_domain    = var.certificate_domain
+  tags                  = local.common_tags
 }
 
 module "prometheus" {
@@ -136,4 +143,5 @@ module "prometheus" {
   route53_zone          = var.route53_zone
   create_certificate    = var.create_certificate
   certificate_domain    = var.certificate_domain
+  tags                  = local.common_tags
 }

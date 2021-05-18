@@ -1,11 +1,15 @@
 resource "aws_cloudwatch_log_group" "monitoring" {
   name              = var.service_name
   retention_in_days = var.retention_in_days
+
+  tags = var.tags
 }
 
 resource "aws_s3_bucket" "canary_artifacts" {
   bucket        = "${var.environment}-${var.region}.${var.service_name}.ch.gov.uk"
   force_destroy = true
+
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "canary_role" {
@@ -25,6 +29,8 @@ data "aws_iam_policy_document" "canary_role" {
 resource "aws_iam_role" "canary_role" {
   name               = "${var.service_name}-canary"
   assume_role_policy = data.aws_iam_policy_document.canary_role.json
+
+  tags = var.tags
 }
 
 resource "aws_iam_policy" "canary_role" {
@@ -62,6 +68,8 @@ resource "aws_iam_policy" "canary_role" {
 
     ]
   })
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "canary_role" {
