@@ -49,7 +49,7 @@ resource "aws_instance" "grafana" {
     volume_size = local.ami_root_block_device.ebs.volume_size
   }
 
-  tags = merge(var.tags ,{
+  tags = merge(var.tags, {
     Name = "${var.service_name}-grafana"
   })
 }
