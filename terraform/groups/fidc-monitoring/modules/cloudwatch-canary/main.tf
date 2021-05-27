@@ -1,16 +1,6 @@
-data "archive_file" "source_code" {
-  type        = "zip"
-  source_dir  = var.source_code_path
-  output_path = "${path.module}/${var.canary_name}.zip"
-}
-
-resource "aws_s3_bucket_object" "source_code" {
+data "aws_s3_bucket_object" "source_code" {
   bucket = var.release_bucket
   key    = "${var.service_name}/${var.environment}/${var.canary_name}-${var.release_version}.zip"
-  source = "${path.module}/${var.canary_name}.zip"
-  etag   = data.archive_file.source_code.output_md5
-
-  tags = var.tags
 }
 
 # Using CloudFormation as canary environment variables
@@ -23,7 +13,7 @@ resource "aws_cloudformation_stack" "canary" {
     handler                = var.handler
     s3Bucket               = var.release_bucket
     s3Key                  = "${var.service_name}/${var.environment}/${var.canary_name}-${var.release_version}.zip"
-    s3Version              = aws_s3_bucket_object.source_code.version_id
+    s3Version              = data.aws_s3_bucket_object.source_code.version_id
     roleArn                = var.role_arn
     canaryName             = var.canary_name
     fidcUrl                = var.fidc_url

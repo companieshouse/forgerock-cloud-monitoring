@@ -81,14 +81,15 @@ variable "fidc_admin_client" {
 variable "fidc_admin_client_secret" {
   type = string
 }
+
 variable "fidc_connector_group" {
   type    = string
-  default = "aws-group"
+  default = "chs-group,ewf-group"
 }
 
 variable "fidc_mappings" {
   type    = string
-  default = "systemChsuserUsers_managedAlpha_user,systemChsrolesRoles_managedAlpha_role,systemChscompanyCompany_profile_managedCompany,systemChsauthcodeCompany_auth_codes_managedCompany"
+  default = "chsUsers_alphaUser,chsRoles_alphaRole,chsMongoCompanyProfile_alphaOrg,chsMongoAuthCode_alphaOrg,managedAlpha_user_systemDsbackupAccount"
 }
 
 variable "alerting_email_address" {
