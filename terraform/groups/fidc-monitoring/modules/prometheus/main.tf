@@ -15,7 +15,7 @@ data "aws_ami" "prometheus" {
 
 resource "aws_security_group" "instance" {
   description = "Restricts access to prometheus ${var.service_name} instance"
-  name        = "${var.service_name}-prometheus-instance"
+  name_prefix = "${var.service_name}-prometheus-instance-"
   vpc_id      = var.vpc_id
 
   ingress {
@@ -35,6 +35,10 @@ resource "aws_security_group" "instance" {
   }
 
   tags = var.tags
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_instance" "prometheus" {
