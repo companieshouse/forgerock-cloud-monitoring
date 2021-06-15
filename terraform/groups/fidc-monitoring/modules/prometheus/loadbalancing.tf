@@ -133,5 +133,7 @@ resource "aws_security_group" "prometheus_lb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = "${var.service_name}-prometheus-lb"
+  })
 }

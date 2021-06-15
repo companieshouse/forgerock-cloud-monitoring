@@ -34,7 +34,9 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = "${var.service_name}-grafana-instance"
+  })
 
   lifecycle {
     create_before_destroy = true

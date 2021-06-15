@@ -134,5 +134,7 @@ resource "aws_security_group" "grafana_lb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = "${var.service_name}-grafana-lb"
+  })
 }
