@@ -15,7 +15,7 @@ data "aws_ami" "grafana" {
 
 resource "aws_security_group" "instance" {
   description = "Restricts access to grafana ${var.service_name} instance"
-  name        = "${var.service_name}-grafana-instance"
+  name_prefix = "${var.service_name}-grafana-instance-"
   vpc_id      = var.vpc_id
 
   ingress {
@@ -34,7 +34,13 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = "${var.service_name}-grafana-instance"
+  })
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_instance" "grafana" {

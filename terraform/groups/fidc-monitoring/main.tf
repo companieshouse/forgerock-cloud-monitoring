@@ -112,7 +112,7 @@ module "mappings_monitoring" {
 
 module "grafana" {
   source                = "./modules/grafana"
-  service_name          = var.service_name
+  service_name          = "forgerock"
   vpc_id                = data.aws_vpc.vpc.id
   subnet_ids            = data.aws_subnet_ids.subnets.ids
   instance_type         = var.grafana_instance_type
@@ -128,7 +128,7 @@ module "grafana" {
 
 module "prometheus" {
   source                = "./modules/prometheus"
-  service_name          = var.service_name
+  service_name          = "forgerock"
   vpc_id                = data.aws_vpc.vpc.id
   subnet_ids            = data.aws_subnet_ids.subnets.ids
   instance_type         = var.prometheus_instance_type

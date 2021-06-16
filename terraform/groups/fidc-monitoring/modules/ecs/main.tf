@@ -22,7 +22,9 @@ resource "aws_security_group" "ecs_tasks" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = var.service_name
+  })
 }
 
 data "aws_iam_policy_document" "ecs_task_execution_role" {
