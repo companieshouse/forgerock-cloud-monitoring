@@ -58,4 +58,11 @@ resource "aws_instance" "prometheus" {
   tags = merge(var.tags, {
     Name = "${var.service_name}-prometheus"
   })
+
+  lifecycle {
+    ignore_changes = [
+      ami,
+      user_data_base64
+    ]
+  }
 }
