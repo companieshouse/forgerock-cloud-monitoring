@@ -5,7 +5,7 @@ locals {
 data "aws_ami" "grafana" {
   owners      = [var.ami_account_id]
   most_recent = true
-  name_regex  = "^grafana-ami-1.0.0$"
+  name_regex  = "^grafana-ami-\\d.\\d.\\d$"
 
   filter {
     name   = "name"
