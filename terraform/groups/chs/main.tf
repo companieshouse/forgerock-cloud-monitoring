@@ -71,7 +71,7 @@ module "rcs_monitoring" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/rcs-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.1"
+  runtime_version          = "syn-nodejs-puppeteer-3.3"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -95,7 +95,7 @@ module "mappings_monitoring" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.1"
+  runtime_version          = "syn-nodejs-puppeteer-3.3"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
