@@ -130,4 +130,3 @@ resource "aws_cloudwatch_metric_alarm" "canary-alerting" {
 
   tags = var.tags
 }
-
