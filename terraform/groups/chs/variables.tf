@@ -89,7 +89,7 @@ variable "fidc_connector_group" {
 
 variable "fidc_mappings" {
   type    = string
-  default = "chsMongoCompanyProfile_alphaOrg,chsMongoAuthCode_alphaOrg,managedAlpha_user_systemDsbackupAccount"
+  default = "chsMongoCompanyProfile_alphaOrg"
 }
 
 variable "alerting_email_address" {
