@@ -129,7 +129,7 @@ module "connectors_monitoring" {
   fidc_password            = var.fidc_password
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
-  fidc_monitored_component = var.fidc_mappings
+  fidc_monitored_component = var.monitored_connectors
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }

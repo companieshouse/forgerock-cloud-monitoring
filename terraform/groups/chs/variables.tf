@@ -92,6 +92,11 @@ variable "fidc_mappings" {
   default = "chsMongoCompanyProfile_alphaOrg,alphaUser_webfilingUser,managedAlpha_user_systemDsbackupAccount,webfilingAuthCode_alphaOrg,webfilingUser_alphaUser"
 }
 
+variable "monitored_connectors" {
+  type    = string
+  default = "CHSUser"
+}
+
 variable "alerting_email_address" {
   type        = string
   description = "Email address for sending alert notifications"
