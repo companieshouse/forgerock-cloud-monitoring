@@ -94,7 +94,7 @@ variable "fidc_mappings" {
 
 variable "monitored_connectors" {
   type    = string
-  default = "CHSUser,CHSRoles"
+  default = "CHSCompany,CHSRoles,CHSUser,DSBackup,WebfilingAuthCode,WebfilingUser"
 }
 
 variable "alerting_email_address" {
