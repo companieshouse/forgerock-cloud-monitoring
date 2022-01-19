@@ -169,3 +169,4 @@ module "prometheus" {
   certificate_domain    = var.certificate_domain
   tags                  = local.common_tags
 }
+
