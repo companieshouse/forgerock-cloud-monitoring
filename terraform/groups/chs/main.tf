@@ -149,7 +149,7 @@ module "reconDuration" {
   fidc_password            = var.fidc_password
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
-  fidc_monitored_component = var.fidc_connector_group
+  fidc_monitored_component = var.fidc_mappings
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }
