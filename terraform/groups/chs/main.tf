@@ -67,7 +67,7 @@ module "rcs_monitoring" {
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "forgerock-rcs"
+  canary_name              = "fr-rcs"
   release_version          = var.container_image_version
   handler                  = "index.handler"
   runtime_version          = "syn-nodejs-puppeteer-3.3"
@@ -91,7 +91,7 @@ module "mappings_monitoring" {
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "forgerock-mappings"
+  canary_name              = "fr-mappings"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
@@ -115,7 +115,7 @@ module "connectors_monitoring" {
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "forgerock-connectors"
+  canary_name              = "fr-connectors"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
@@ -139,7 +139,7 @@ module "reconDuration" {
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "forgerock-reconDuration"
+  canary_name              = "fr-reconduration"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
