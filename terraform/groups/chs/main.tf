@@ -72,6 +72,7 @@ module "rcs_monitoring" {
   handler                  = "index.handler"
   runtime_version          = "syn-nodejs-puppeteer-3.3"
   release_bucket           = var.release_bucket
+  source_code_path         = "${path.module}/scripts/rcs-monitoring"
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
   health_check_rate        = var.health_check_rate
@@ -92,6 +93,7 @@ module "mappings_monitoring" {
   service_name             = var.service_name
   canary_name              = "forgerock-mappings"
   release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
   runtime_version          = "syn-nodejs-puppeteer-3.3"
   release_bucket           = var.release_bucket
@@ -115,6 +117,7 @@ module "connectors_monitoring" {
   service_name             = var.service_name
   canary_name              = "forgerock-connectors"
   release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
   runtime_version          = "syn-nodejs-puppeteer-3.3"
   release_bucket           = var.release_bucket
@@ -138,6 +141,7 @@ module "reconDuration" {
   service_name             = var.service_name
   canary_name              = "forgerock-reconDuration"
   release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
   runtime_version          = "syn-nodejs-puppeteer-3.3"
   release_bucket           = var.release_bucket
