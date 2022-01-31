@@ -139,7 +139,7 @@ module "reconDuration" {
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "fr-reconduration"
+  canary_name              = "fr-recon-duration"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
