@@ -59,6 +59,8 @@ Parameters:
     Type: String
   fidcMonitoredComponent:
     Type: String
+  reconduration:
+  Type: String
   runtime:
     Type: String
   healthCheckRate:
