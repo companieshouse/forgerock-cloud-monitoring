@@ -99,7 +99,6 @@ variable "monitored_connectors" {
 
 variable "recon_duration" {
   type    = string
-  default = "300000"
   description = "Time reconcilliation runs for before raising an alarm"
 }
 
