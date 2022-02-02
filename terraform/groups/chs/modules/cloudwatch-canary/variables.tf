@@ -65,7 +65,12 @@ variable "fidc_admin_client" {
 variable "fidc_admin_client_secret" {
   type = string
 }
+
 variable "fidc_monitored_component" {
+  type = string
+}
+
+variable "recon_duration" {
   type = string
 }
 
