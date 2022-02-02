@@ -89,7 +89,7 @@ variable "fidc_connector_group" {
 
 variable "fidc_mappings" {
   type    = string
-  default = "chsMongoCompanyProfile_alphaOrg,alphaUser_webfilingUser,managedAlpha_user_systemDsbackupAccount,webfilingAuthCode_alphaOrg,webfilingUser_alphaUser"
+  default = "chsMongoCompanyProfile_alphaOrg,alphaUser_webfilingUser,webfilingAuthCode_alphaOrg,webfilingUser_alphaUser"
 }
 
 variable "monitored_connectors" {
