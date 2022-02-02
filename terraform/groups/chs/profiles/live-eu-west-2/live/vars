@@ -11,4 +11,3 @@ domain_name = "company-information.service.gov.uk"
 create_certificate = true
 create_route53_record = true
 route53_zone = "company-information.service.gov.uk"
-recon_duration = 14400000
