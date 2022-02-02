@@ -82,6 +82,7 @@ module "rcs_monitoring" {
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_connector_group
+  recon_duration           = var.recon_duration
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }
@@ -106,6 +107,7 @@ module "mappings_monitoring" {
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_mappings
+  recon_duration           = var.recon_duration
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }
@@ -130,6 +132,7 @@ module "connectors_monitoring" {
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.monitored_connectors
+  recon_duration           = var.recon_duration
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }
@@ -154,6 +157,7 @@ module "reconDuration" {
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
   fidc_monitored_component = var.fidc_mappings
+  recon_duration           = var.recon_duration
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }

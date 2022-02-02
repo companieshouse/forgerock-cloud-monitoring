@@ -22,6 +22,7 @@ resource "aws_cloudformation_stack" "canary" {
     fidcAdminClient        = var.fidc_admin_client
     fidcAdminClientSecret  = var.fidc_admin_client_secret
     fidcMonitoredComponent = var.fidc_monitored_component
+    reconduration          = var.recon_duration
     runtime                = var.runtime_version
     healthCheckRate        = var.health_check_rate
     tagEnvironment         = var.tags["Environment"]
@@ -90,6 +91,7 @@ Resources:
           ADMIN_CLIENT: !Ref fidcAdminClient
           ADMIN_CLIENT_SECRET: !Ref fidcAdminClientSecret
           MONITORED_COMPONENT: !Ref fidcMonitoredComponent
+          RECON_DURATION: !Ref reconduration
       RuntimeVersion: !Ref runtime
       Schedule: 
         Expression: !Ref healthCheckRate

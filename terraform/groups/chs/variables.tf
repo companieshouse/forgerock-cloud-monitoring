@@ -97,6 +97,12 @@ variable "monitored_connectors" {
   default = "CHSCompany,CHSRoles,CHSUser,DSBackup,WebfilingAuthCode,WebfilingUser"
 }
 
+variable "recon_duration" {
+  type    = string
+  default = "300000"
+  description = "Time reconcilliation runs for before raising an alarm"
+}
+
 variable "alerting_email_address" {
   type        = string
   description = "Email address for sending alert notifications"
