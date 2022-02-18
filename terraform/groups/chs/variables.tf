@@ -102,6 +102,11 @@ variable "recon_duration" {
   description = "Time reconcilliation runs for before raising an alarm"
 }
 
+variable "cancel_recon_after" {
+  type    = string
+  description = "Time to let reconcilliation run for before cancelling"
+}
+
 variable "alerting_email_address" {
   type        = string
   description = "Email address for sending alert notifications"

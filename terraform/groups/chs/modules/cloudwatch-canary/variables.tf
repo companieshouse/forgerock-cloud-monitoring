@@ -74,6 +74,10 @@ variable "recon_duration" {
   type = string
 }
 
+variable "cancel_recon_after" {
+  type = string
+}
+
 variable "sns_topic_arn" {
   type = string
 }
