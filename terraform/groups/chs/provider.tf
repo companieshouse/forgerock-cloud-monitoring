@@ -27,5 +27,5 @@ provider "aws" {
 }
 
 provider "grafana" {
-  auth_type      = "keys"
+  auth = var.grafana_api_key
 }
