@@ -27,6 +27,5 @@ provider "aws" {
 }
 
 provider "grafana" {
-  aws_access_key        = var.aws_access_key
-  aws_secret_access_key = var.aws_secret_access_key
+  auth_type      = "keys"
 }
