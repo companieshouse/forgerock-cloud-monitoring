@@ -6,6 +6,16 @@ variable "vpc_id" {
   type = string
 }
 
+variable "aws_access_key" {
+  type        = string
+  description = "The AWS access key"
+}
+
+variable "aws_secret_access_key" {
+  type        = string
+  description = "The AWS secret access key"
+}
+
 variable "vpn_cidrs" {
   type = list(string)
 }

@@ -13,6 +13,16 @@ variable "vpc_name" {
   description = "The name of the VPC to be used for AWS resources"
 }
 
+variable "aws_access_key" {
+  type        = string
+  description = "The AWS access key"
+}
+
+variable "aws_secret_access_key" {
+  type        = string
+  description = "The AWS secret access key"
+}
+
 variable "service_name" {
   type        = string
   description = "The service name to be used when creating AWS resources"
