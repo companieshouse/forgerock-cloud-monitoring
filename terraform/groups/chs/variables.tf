@@ -108,12 +108,12 @@ variable "monitored_connectors" {
 }
 
 variable "recon_duration" {
-  type    = string
+  type        = string
   description = "Time reconcilliation runs for before raising an alarm"
 }
 
 variable "cancel_recon_after" {
-  type    = string
+  type        = string
   description = "Time to let reconcilliation run for before cancelling"
 }
 
