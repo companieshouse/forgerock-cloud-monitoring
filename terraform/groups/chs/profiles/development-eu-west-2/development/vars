@@ -12,4 +12,4 @@ create_certificate = false
 certificate_domain = "amido.aws.chdev.org"
 create_route53_record = true
 route53_zone = "aws.chdev.org"
-grafana_api_key = "eyJrIjoic25kSUxjOW5TSzBFRzBQSmljeGJERVVWMDA1dW9BVlMiLCJuIjoidGVycmFmb3JtIiwiaWQiOjF9"
+grafana_auth = "eyJrIjoic25kSUxjOW5TSzBFRzBQSmljeGJERVVWMDA1dW9BVlMiLCJuIjoidGVycmFmb3JtIiwiaWQiOjF9"

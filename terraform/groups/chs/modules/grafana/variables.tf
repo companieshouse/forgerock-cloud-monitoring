@@ -52,7 +52,7 @@ variable "certificate_domain" {
   type = string
 }
 
-variable "grafana_api_key" {
+variable "grafana_auth" {
   type = string
 }
 
