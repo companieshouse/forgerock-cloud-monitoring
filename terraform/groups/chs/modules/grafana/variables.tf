@@ -52,6 +52,10 @@ variable "certificate_domain" {
   type = string
 }
 
+variable "grafana_api_key" {
+  type = string
+}
+
 variable "tags" {
   type = object({
     Environment    = string
