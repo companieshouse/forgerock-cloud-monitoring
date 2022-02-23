@@ -205,6 +205,8 @@ module "grafana" {
   route53_zone          = var.route53_zone
   create_certificate    = var.create_certificate
   certificate_domain    = var.certificate_domain
+  aws_access_key        = var.aws_access_key
+  aws_secret_access_key = var.aws_secret_access_key
   tags                  = local.common_tags
 }
 
