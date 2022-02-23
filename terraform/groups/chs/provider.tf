@@ -25,3 +25,8 @@ data "terraform_remote_state" "networking" {
 provider "aws" {
   region = var.region
 }
+
+provider "grafana" {
+  aws_access_key = var.aws_access_key
+  aws_secret_access_key = var.aws_secret_access_key
+}
