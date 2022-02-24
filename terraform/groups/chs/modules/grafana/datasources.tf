@@ -12,3 +12,7 @@ resource "grafana_data_source" "cloudwatch" {
   secret_key = var.aws_secret_access_key
  }
 }
+
+# resource "grafana_dashboard" "metrics" {
+#  config_json = "${file("grafana-dashboard.json")}"
+# }

@@ -207,7 +207,7 @@ module "grafana" {
   certificate_domain    = var.certificate_domain
   aws_access_key        = var.aws_access_key
   aws_secret_access_key = var.aws_secret_access_key
-  grafana_auth          = var.grafana_auth
+  # grafana_auth          = var.grafana_auth
   tags                  = local.common_tags
 }
 
