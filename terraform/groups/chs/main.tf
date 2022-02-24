@@ -195,6 +195,7 @@ module "cancelRecon" {
 module "grafana" {
   source                = "./modules/grafana"
   service_name          = "forgerock"
+  region                = var.region
   vpc_id                = data.aws_vpc.vpc.id
   subnet_ids            = data.aws_subnet_ids.subnets.ids
   instance_type         = var.grafana_instance_type
@@ -208,7 +209,7 @@ module "grafana" {
   aws_access_key        = var.aws_access_key
   aws_secret_access_key = var.aws_secret_access_key
   # grafana_auth          = var.grafana_auth
-  tags                  = local.common_tags
+  tags = local.common_tags
 }
 
 module "prometheus" {

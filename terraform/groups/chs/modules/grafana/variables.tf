@@ -1,3 +1,8 @@
+variable "region" {
+  type        = string
+  description = "AWS region for deployment"
+}
+
 variable "service_name" {
   type = string
 }
