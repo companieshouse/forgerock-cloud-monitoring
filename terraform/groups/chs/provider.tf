@@ -27,6 +27,6 @@ provider "aws" {
 }
 
 provider "grafana" {
-  url = "https://forgerock-grafana.amido.aws.chdev.org/"
+  url  = "https://forgerock-grafana.amido.aws.chdev.org/"
   auth = var.grafana_auth
 }
