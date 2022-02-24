@@ -163,8 +163,3 @@ variable "certificate_domain" {
   description = "The domain used to look up existing certificates"
   default     = "N/A"
 }
-
-variable "grafana_auth" {
-  type        = string
-  description = "the API key for the Grafana instance"
-}
