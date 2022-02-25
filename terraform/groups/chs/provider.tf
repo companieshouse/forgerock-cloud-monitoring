@@ -26,6 +26,6 @@ provider "aws" {
   region = var.region
 }
 
-# provider "grafana" {
-#   url = "https://forgerock-grafana.amido.aws.chdev.org/"
-# }
+provider "grafana" {
+  url = "https://forgerock-grafana.amido.aws.chdev.org/"
+}
