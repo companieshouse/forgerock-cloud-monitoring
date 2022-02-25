@@ -1,6 +1,6 @@
 data "aws_s3_bucket_object" "source_code" {
   bucket = var.release_bucket
-  key    = "${var.service_name}/${var.canary_name}-${var.release_version}.zip"
+  key    = "${var.service_name}/${var.environment}/${var.canary_name}-${var.release_version}.zip"
 }
 
 # Using CloudFormation as canary environment variables
@@ -12,7 +12,7 @@ resource "aws_cloudformation_stack" "canary" {
     artifactBucket         = "s3://${var.artifact_bucket}/"
     handler                = var.handler
     s3Bucket               = var.release_bucket
-    s3Key                  = "${var.service_name}/${var.canary_name}-${var.release_version}.zip"
+    s3Key                  = "${var.service_name}/${var.environment}/${var.canary_name}-${var.release_version}.zip"
     s3Version              = data.aws_s3_bucket_object.source_code.version_id
     roleArn                = var.role_arn
     canaryName             = var.canary_name
@@ -79,16 +79,16 @@ Parameters:
 Resources:
   Canary:
     Type: AWS::Synthetics::Canary
-    Properties: 
+    Properties:
       ArtifactS3Location: !Ref artifactBucket
-      Code: 
+      Code:
         Handler: !Ref handler
         S3Bucket: !Ref s3Bucket
         S3Key: !Ref s3Key
         S3ObjectVersion: !Ref s3Version
       ExecutionRoleArn: !Ref roleArn
       Name: !Ref canaryName
-      RunConfig: 
+      RunConfig:
         EnvironmentVariables:
           FIDC_URL: !Ref fidcUrl
           USER: !Ref fidcUser
@@ -99,7 +99,7 @@ Resources:
           RECON_DURATION: !Ref reconduration
           CANCEL_RECON_AFTER: !Ref cancelReconAfter
       RuntimeVersion: !Ref runtime
-      Schedule: 
+      Schedule:
         Expression: !Ref healthCheckRate
       StartCanaryAfterCreation: true
       Tags:
