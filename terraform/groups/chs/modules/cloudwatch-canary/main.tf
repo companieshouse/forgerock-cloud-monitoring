@@ -1,4 +1,4 @@
-data "aws_s3_bucket_object" "source_code" {
+data "aws_s3_object" "source_code" {
   bucket = var.release_bucket
   key    = "${var.service_name}/${var.canary_name}-${var.release_version}.zip"
 }
