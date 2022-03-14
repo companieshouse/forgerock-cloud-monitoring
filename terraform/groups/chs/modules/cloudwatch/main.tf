@@ -5,6 +5,22 @@ resource "aws_cloudwatch_log_group" "monitoring" {
   tags = var.tags
 }
 
+resource "aws_cloudwatch_query_definition" "custom_query" {
+  name = "custom_query"
+
+  log_group_names = [
+    "/aws/lambda/cwsyn-fr-connectors-5f03d36d-38d5-4013-9702-e215c42e9f48",
+    "/aws/lambda/cwsyn-fr-mappings-aabdacc6-7707-49d2-9100-7470f16f277d"
+  ]
+
+  query_string = <<EOF
+fields @timestamp, @message
+| filter @message like /Failure reason:/
+| parse @message "[*]\"Failure reason:\": \"*\"" as Count, Error
+| stats sum(min(Count)) by Error as CT 
+EOF
+}
+
 resource "aws_s3_bucket" "canary_artifacts" {
   bucket        = "${var.environment}-${var.region}.${var.service_name}.ch.gov.uk"
   force_destroy = true
