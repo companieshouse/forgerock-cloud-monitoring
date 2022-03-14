@@ -5,12 +5,11 @@ resource "aws_cloudwatch_log_group" "monitoring" {
   tags = var.tags
 }
 
-resource "aws_cloudwatch_query_definition" "custom_query" {
-  name = "custom_query"
+resource "aws_cloudwatch_query_definition" "fr_connectors_query" {
+  name = "fr_connectors"
 
   log_group_names = [
-    "/aws/lambda/cwsyn-fr-connectors-5f03d36d-38d5-4013-9702-e215c42e9f48",
-    "/aws/lambda/cwsyn-fr-mappings-aabdacc6-7707-49d2-9100-7470f16f277d"
+    "/aws/lambda/cwsyn-fr-connectors-5f03d36d-38d5-4013-9702-e215c42e9f48"
   ]
 
   query_string = <<EOF
