@@ -61,8 +61,8 @@ resource "aws_instance" "grafana" {
 
   lifecycle {
     ignore_changes = [
-      ami
-      # user_data_base64
+      ami,
+      user_data_base64
     ]
   }
 }
