@@ -94,7 +94,7 @@ variable "fidc_mappings" {
 
 variable "monitored_connectors" {
   type    = string
-  default = "CHSCompany,WebfilingAuthCode,WebfilingUser"
+  default = "WebfilingAuthCode,WebfilingUser"
 }
 
 variable "recon_duration" {
