@@ -70,7 +70,7 @@ module "rcs_monitoring" {
   canary_name              = "fr-rcs"
   release_version          = var.container_image_version
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   source_code_path         = "${path.module}/scripts/rcs-monitoring"
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
@@ -97,7 +97,7 @@ module "mappings_monitoring" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -149,7 +149,7 @@ module "connector_wfauthcode" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -175,7 +175,7 @@ module "connector_wfuser" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -201,7 +201,7 @@ module "reconDuration" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -227,7 +227,7 @@ module "cancelRecon" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
