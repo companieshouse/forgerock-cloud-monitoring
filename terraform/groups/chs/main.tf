@@ -123,7 +123,7 @@ module "connector_chscompany" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
