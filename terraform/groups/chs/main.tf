@@ -197,7 +197,7 @@ module "MongoCompanyProfile_Duration" {
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "mongocompanyprofile-duration"
+  canary_name              = "mongocompprofile-dur"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
