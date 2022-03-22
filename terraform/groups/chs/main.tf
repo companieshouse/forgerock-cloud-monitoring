@@ -192,12 +192,12 @@ module "connector_wfuser" {
   tags                     = local.common_tags
 }
 
-module "reconDuration" {
+module "MongoCompanyProfile_Duration" {
   source                   = "./modules/cloudwatch-canary"
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "fr-recon-duration"
+  canary_name              = "mongocompanyprofile-dur"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
