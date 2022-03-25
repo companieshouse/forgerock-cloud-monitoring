@@ -56,7 +56,6 @@ variable "fidc_user" {
 
 variable "fidc_password" {
   type      = string
-  sensitive = true
 }
 
 variable "fidc_admin_client" {
@@ -65,7 +64,6 @@ variable "fidc_admin_client" {
 
 variable "fidc_admin_client_secret" {
   type      = string
-  sensitive = true
 }
 
 variable "fidc_monitored_component" {
