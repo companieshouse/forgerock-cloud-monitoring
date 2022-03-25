@@ -50,6 +50,7 @@ variable "fidc_api_key_id" {
 variable "fidc_api_key_secret" {
   type        = string
   description = "ForgeRock Identity Cloud logging API key secret"
+  sensitive   = true
 }
 
 variable "log_retention_in_days" {
@@ -71,7 +72,8 @@ variable "fidc_user" {
 }
 
 variable "fidc_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "fidc_admin_client" {
@@ -79,7 +81,8 @@ variable "fidc_admin_client" {
 }
 
 variable "fidc_admin_client_secret" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "fidc_connector_group" {
@@ -98,12 +101,12 @@ variable "monitored_connectors" {
 }
 
 variable "recon_duration" {
-  type    = string
+  type        = string
   description = "Time reconcilliation runs for before raising an alarm"
 }
 
 variable "cancel_recon_after" {
-  type    = string
+  type        = string
   description = "Time to let reconcilliation run for before cancelling"
 }
 
