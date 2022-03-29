@@ -22,7 +22,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 7,
-    "iteration": 1648545472615,
+    "iteration": 1648547642697,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -145,7 +145,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = the latest Auth Code recon was successful",
+        "description": "OK = the latest Auth Codes recon was successful",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -238,7 +238,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "Last Auth Code Recon",
+        "title": "Last Auth Codes Recon",
         "type": "stat"
       },
       {
@@ -348,14 +348,14 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = the IDM endpoint to check the latest Companies recon status was successful (200)\nFAIL= the IDM endpoint did not return a 200 code)",
+        "description": "OK = the IDM endpoint to check the latest Companies recon status was successful (200)\nFAIL= the IDM endpoint did not return a 200 code",
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "thresholds"
             },
             "decimals": 0,
-            "displayName": "IDM endpoint response",
+            "displayName": "IDM Response 200",
             "mappings": [
               {
                 "options": {
@@ -441,7 +441,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "IDM Endpoint Response",
+        "title": "IDM Response 200 - Companies",
         "type": "stat"
       },
       {
@@ -449,14 +449,14 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = the latest Companies recon was successful",
+        "description": "OK = the IDM endpoint to check the latest Auth Codes recon status was successful (200)\nFAIL= the IDM endpoint did not return a 200 code",
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "thresholds"
             },
             "decimals": 0,
-            "displayName": "Last check",
+            "displayName": "IDM Response 200",
             "mappings": [
               {
                 "options": {
@@ -542,7 +542,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "IDM Endpoint Response",
+        "title": "IDM Response 200- Auth Codes",
         "type": "stat"
       },
       {
@@ -550,14 +550,14 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = the latest Companies recon was successful",
+        "description": "OK = the latest Users recon was successful",
         "fieldConfig": {
           "defaults": {
             "color": {
               "mode": "thresholds"
             },
             "decimals": 0,
-            "displayName": "Last check",
+            "displayName": "IDM Response 200",
             "mappings": [
               {
                 "options": {
@@ -643,7 +643,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "IDM Endpoint Response",
+        "title": "IDM Response 200 - Users",
         "type": "stat"
       },
       {
@@ -664,7 +664,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "Success rate of the canary that checks the latest Companies recon processed records.\n \nEvery check is OK if the latest Companies recon has completed with SUCCESS , and the record processing failure rate is less than 30% ",
+        "description": "Success rate of the successfully processed records check of  latest Companies recon.\n \nEvery check is OK if the latest Companies recon has completed with SUCCESS , and the record processing failure rate is less than 30% ",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -766,7 +766,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = in the latest check of the last Companies recon, the number of records which failed processing is less than 30% ",
+        "description": "OK = in the last Companies recon, the number of records which failed processing is less than 30%",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -866,7 +866,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "Latest Companies Recon records",
+        "title": "Latest Companies Recon OK records",
         "type": "stat"
       },
       {
@@ -874,7 +874,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "Success rate of the canary that checks the latest Auth Codes recon processed records.",
+        "description": "Success rate of the successfully processed records check of  latest Auth Codes recon.\n \nEvery check is OK if the latest Auth Codes recon has completed with SUCCESS , and the record processing failure rate is less than 30% ",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -976,7 +976,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = in the latest check of the last Auth Codes recon, the number of records which failed processing is less than 30% ",
+        "description": "OK = in the last Auth Codes recon, the number of records which failed processing is less than 30%",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1076,7 +1076,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "Latest Auth codes Recon records",
+        "title": "Latest Auth codes Recon OK records",
         "type": "stat"
       },
       {
@@ -1084,7 +1084,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "Success rate of the canary that checks the latest Users recon processed records.",
+        "description": "Success rate of the successfully processed records check of  latest Users recon.\n \nEvery check is OK if the latest Users recon has completed with SUCCESS , and the record processing failure rate is less than 30% ",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1186,7 +1186,7 @@
           "type": "cloudwatch",
           "uid": "${datasource}"
         },
-        "description": "OK = in the latest check of the last Users recon, the number of records which failed processing is less than 30% ",
+        "description": "OK = in the last Users recon, the number of records which failed processing is less than 30%",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1286,7 +1286,7 @@
           }
         ],
         "timeFrom": "30m",
-        "title": "Latest User Recon records",
+        "title": "Latest User Recon OK records",
         "type": "stat"
       },
       {
@@ -2111,13 +2111,13 @@
       ]
     },
     "time": {
-      "from": "now-6h",
+      "from": "now-30m",
       "to": "now"
     },
     "timepicker": {},
     "timezone": "",
     "title": "ForgeRock Reconciliation",
     "uid": "Zw6TVuPnk",
-    "version": 87,
+    "version": 88,
     "weekStart": ""
   }

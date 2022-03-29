@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 6,
-  "iteration": 1648545406032,
+  "iteration": 1648547566114,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1655,13 +1655,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "ForgeRock Connectors",
   "uid": "KCi1x5Enk",
-  "version": 46,
+  "version": 47,
   "weekStart": "monday"
 }
