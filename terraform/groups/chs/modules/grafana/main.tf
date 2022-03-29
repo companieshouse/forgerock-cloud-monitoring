@@ -59,10 +59,10 @@ resource "aws_instance" "grafana" {
     Name = "${var.service_name}-grafana"
   })
 
-  lifecycle {
-    ignore_changes = [
-      ami,
-      user_data_base64
-    ]
-  }
+  # lifecycle {
+  #   ignore_changes = [
+  #     ami,
+  #     user_data_base64
+  #   ]
+  # }
 }
