@@ -71,7 +71,7 @@ variable "fidc_user" {
 }
 
 variable "fidc_password" {
-  type = string
+  type      = string
 }
 
 variable "fidc_admin_client" {
@@ -79,7 +79,7 @@ variable "fidc_admin_client" {
 }
 
 variable "fidc_admin_client_secret" {
-  type = string
+  type      = string
 }
 
 variable "fidc_connector_group" {
@@ -94,16 +94,16 @@ variable "fidc_mappings" {
 
 variable "monitored_connectors" {
   type    = string
-  default = "CHSCompany,CHSRoles,CHSUser,DSBackup,WebfilingAuthCode,WebfilingUser"
+  default = "WebfilingAuthCode,WebfilingUser"
 }
 
 variable "recon_duration" {
-  type    = string
+  type        = string
   description = "Time reconcilliation runs for before raising an alarm"
 }
 
 variable "cancel_recon_after" {
-  type    = string
+  type        = string
   description = "Time to let reconcilliation run for before cancelling"
 }
 

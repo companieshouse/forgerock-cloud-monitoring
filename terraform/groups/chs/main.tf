@@ -70,7 +70,7 @@ module "rcs_monitoring" {
   canary_name              = "fr-rcs"
   release_version          = var.container_image_version
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   source_code_path         = "${path.module}/scripts/rcs-monitoring"
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
@@ -88,16 +88,16 @@ module "rcs_monitoring" {
   tags                     = local.common_tags
 }
 
-module "mappings_monitoring" {
+module "mapping_chscompany" {
   source                   = "./modules/cloudwatch-canary"
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "fr-mappings"
+  canary_name              = "mapping-chscompany"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -107,23 +107,23 @@ module "mappings_monitoring" {
   fidc_password            = var.fidc_password
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
-  fidc_monitored_component = var.fidc_mappings
+  fidc_monitored_component = "chsMongoCompanyProfile_alphaOrg"
   recon_duration           = var.recon_duration
   cancel_recon_after       = var.cancel_recon_after
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }
 
-module "connectors_monitoring" {
+module "mapping_wfauthcode" {
   source                   = "./modules/cloudwatch-canary"
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "fr-connectors"
+  canary_name              = "mapping-wfauthcode"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -133,23 +133,23 @@ module "connectors_monitoring" {
   fidc_password            = var.fidc_password
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
-  fidc_monitored_component = var.monitored_connectors
+  fidc_monitored_component = "webfilingAuthCode_alphaOrg"
   recon_duration           = var.recon_duration
   cancel_recon_after       = var.cancel_recon_after
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
 }
 
-module "reconDuration" {
+module "mapping_wfuser" {
   source                   = "./modules/cloudwatch-canary"
   region                   = var.region
   environment              = var.environment
   service_name             = var.service_name
-  canary_name              = "fr-recon-duration"
+  canary_name              = "mapping-wfuser"
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
@@ -159,7 +159,163 @@ module "reconDuration" {
   fidc_password            = var.fidc_password
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
-  fidc_monitored_component = var.fidc_mappings
+  fidc_monitored_component = "webfilingUser_alphaUser"
+  recon_duration           = var.recon_duration
+  cancel_recon_after       = var.cancel_recon_after
+  sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
+}
+
+module "connector_chscompany" {
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "connector-chscompany"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  health_check_rate        = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = "CHSCompany"
+  recon_duration           = var.recon_duration
+  cancel_recon_after       = var.cancel_recon_after
+  sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
+}
+
+module "connector_wfauthcode" {
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "connector-wfauthcode"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  health_check_rate        = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = "WebfilingAuthCode"
+  recon_duration           = var.recon_duration
+  cancel_recon_after       = var.cancel_recon_after
+  sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
+}
+
+module "connector_wfuser" {
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "connector-wfuser"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  health_check_rate        = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = "WebfilingUser"
+  recon_duration           = var.recon_duration
+  cancel_recon_after       = var.cancel_recon_after
+  sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
+}
+
+module "duration_chscompany" {
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "duration-chscompany"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  health_check_rate        = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = "chsMongoCompanyProfile_alphaOrg"
+  recon_duration           = var.recon_duration
+  cancel_recon_after       = var.cancel_recon_after
+  sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
+}
+
+module "duration_wfauthcode" {
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "duration-wfauthcode"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  health_check_rate        = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = "webfilingAuthCode_alphaOrg"
+  recon_duration           = var.recon_duration
+  cancel_recon_after       = var.cancel_recon_after
+  sns_topic_arn            = module.alerting.sns_topic_arn
+  tags                     = local.common_tags
+}
+
+module "duration_wfuser" {
+  source                   = "./modules/cloudwatch-canary"
+  region                   = var.region
+  environment              = var.environment
+  service_name             = var.service_name
+  canary_name              = "duration-wfuser"
+  release_version          = var.container_image_version
+  source_code_path         = "${path.module}/scripts/mappings-monitoring"
+  handler                  = "index.handler"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
+  release_bucket           = var.release_bucket
+  artifact_bucket          = module.cloudwatch.canary_artifact_bucket
+  role_arn                 = module.cloudwatch.canary_role_arn
+  health_check_rate        = var.health_check_rate
+  fidc_url                 = var.fidc_url
+  fidc_user                = var.fidc_user
+  fidc_password            = var.fidc_password
+  fidc_admin_client        = var.fidc_admin_client
+  fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = "webfilingUser_alphaUser"
   recon_duration           = var.recon_duration
   cancel_recon_after       = var.cancel_recon_after
   sns_topic_arn            = module.alerting.sns_topic_arn
@@ -175,7 +331,7 @@ module "cancelRecon" {
   release_version          = var.container_image_version
   source_code_path         = "${path.module}/scripts/mappings-monitoring"
   handler                  = "index.handler"
-  runtime_version          = "syn-nodejs-puppeteer-3.3"
+  runtime_version          = "syn-nodejs-puppeteer-3.4"
   release_bucket           = var.release_bucket
   artifact_bucket          = module.cloudwatch.canary_artifact_bucket
   role_arn                 = module.cloudwatch.canary_role_arn
