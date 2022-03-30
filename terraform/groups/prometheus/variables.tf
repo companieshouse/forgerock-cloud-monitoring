@@ -81,10 +81,6 @@ variable "service" {
   type        = string
 }
 
-variable "ssh_public_key" {
-  type        = string
-  description = "The SSH public key"
-}
 
 variable "team" {
   description = "The team responsible for administering the instance"
