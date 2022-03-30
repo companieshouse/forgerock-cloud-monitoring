@@ -1,0 +1,3 @@
+---
+
+grafana_url: "{{ lookup('env', 'GRAFANA_URL') }}"

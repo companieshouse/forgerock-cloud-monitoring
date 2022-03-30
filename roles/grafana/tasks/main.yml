@@ -1,0 +1,16 @@
+---
+
+- name: Create forgerock monitoring datasource
+  uri:
+    url: "{{ grafana_url }}/api/datasources"
+    method: POST
+    url_username: "{{ item.grafana_admin_user }}"
+    url_password: "{{ item.grafana_admin_password }}"
+    body: "{{ lookup('template', 'roles/grafana/templates/forgerock_monitoring_datasource.json.j2') }}"
+    status_code: 200
+    body_format: json
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/json
+  with_items:
+    "{{ foregrock_variables }}"
