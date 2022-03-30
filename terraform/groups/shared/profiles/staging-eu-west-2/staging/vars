@@ -1,12 +1,3 @@
-prometheus_lvm_block_devices = [
-  {
-    aws_volume_size_gb: "100",
-    filesystem_resize_tool: "xfs_growfs",
-    lvm_logical_volume_device_node: "/dev/prometheus/data",
-    lvm_physical_volume_device_node: "/dev/xvdb"
-  }
-]
-
 team = "platform"
 
 # TODO - Remove these once they're provided automatically
@@ -14,4 +5,4 @@ account_name = "staging"
 environment = "staging"
 repository_name = "forgerock-cloud-monitoring"
 
-ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCz8LIcaFqMAP2kZ+KeAjLVjntSfRY+NI9POkBpKXblbAzSwC8Rk8e3L6s+Mtqr94Fum/EJl6X0QWzFwSU66mlHus4pAdZk9N+82PrcRnnp8p7pFw8tztt3lNgEI+GZKAdsccHxYHPYeBNLHkSZDqHNQ+2cZtcOGIJYAZzjNA3CNS1zsXl5zAAXMLpAbgpHE8uw7kEc9cJTCrsTnruK4OW+F8K4Km/r+U2wAjjaPYQ/+/anJzel9zdUg5Zgl/E/LKTSJz7gGJV0wbI15cn0U3GkWNM/HTnkOzKVBNJS/VInft2QuofyNw4dEasFKLeJbwHLM8fXIw9oXrb9Po9WMwvsXQSJkWi6phzRnn6XIpPzbItblarkHPpECiDr6HSSWtekvXEa1ei4ewBObZUXTEjMmFbRS/M7yIYmkh7gEkXKjtBRMn+oUTxsFG3VUISh8zx14JYo852GB+y68BsGFAwjIafZGJ7tXplEEBXYSJNK5fyxv6cNaZzhKZgH3AK/O531mgflFtiinbI3ZTTmLcFjm9PgmHstXOGy0QL7odZH6JuDPPLCwFud4zpZsn0IxrInbk704HkC3S/qDcE/PbHPV6+uRW1aR7IuYMyQfNWp7hDTRX4oYpuxtffHjZu3CD6Ktkct3kUw1/VA11ardw1yWBIqojV8wMQB/E7RH91OAw== forgerock-grafana-staging"
+ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDmIdhUbi1btUe74KAcXk1Ix/UHhEQbam6oRNqlmwn78vbmefvLFw1Nxk7jVpuJe9P4tgbNBgktfq7f3VeraFG/jTgbO512RLK9qhF35RecbHZ3abWO6Dnfo6lNFOT+WOYnfj4EWD3HDxmp+FaqFmqL7F17NBqmRDEO+qJ3RzITCxQBPy4/0zBsN4FhLnokpsyNS/q6jXSYGJq4gpvUzn/mC8SdLS+vLBwsmeaVu3DdKWcxs7CMcrSSR84VCaUgMohBQVOIMlADj3BV7g4OFZJkxT8kLQ+7S5XG1i6HnFB1R1jE8XpxYwJMMmSme29roGRrZaPolFA3qsFau+BPHjG+4yPPcNVYja3J2n94EmQN3hByVcHkP4tQxeRO7j5kXgrQPd59oOE8spoaR2WGtREfQxkVxpyyFpCxmg7ApB8xcB5LMFMLgnTMpnm6UITGazuy+Nx3NgExqRxH/Vvaipmfnc83c4rFLWYo048H6ziNRxslit9i8P8AsTph/XGnWcwrMCvwtbD99DUdSosEqIEFFUmdrzPe8ZeKHGK8S6x22gE5tdmpe2oY/Zp4aJW7io9r+ReKQdEUKrN56yA1U2RWuaifKHRRDZ2OSKacrWoUhMutkZKW0n2NjgMMHSUuLW23DPET2FFopC0cO1+1H6IKa1rpoqZtaIXXMnK92VcpCQ== forgerock-staging"

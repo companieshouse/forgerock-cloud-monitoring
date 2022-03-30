@@ -1,12 +1,3 @@
-prometheus_lvm_block_devices = [
-  {
-    aws_volume_size_gb: "100",
-    filesystem_resize_tool: "xfs_growfs",
-    lvm_logical_volume_device_node: "/dev/prometheus/data",
-    lvm_physical_volume_device_node: "/dev/xvdb"
-  }
-]
-
 team = "platform"
 
 # TODO - Remove these once they're provided automatically
@@ -14,4 +5,4 @@ account_name = "development"
 environment = "development"
 repository_name = "forgerock-cloud-monitoring"
 
-ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQ00hC9N5tDV9uBGngdGsoZf7UaR8ZsUwC3mQbbYe1npRcUpvIzsUxNFP5ZKRwD8GqOinEAJx8I0X5d7y/BJCg+arm92fyE0sVihWLSfGUntfO2/N4/6KaixuE+rG2f/MBZy3YfKtWEA8TNELE4EeMZYh45YqC71NMgI6A0v3lKYSbbZNL29nIJ0KCVBwVUE4QP8VuzOaFrEGmJ6pay/x4hZvSQjQC2V5nL8GYqZh2jADvJAl6yYgzaA/LEHLQyqyYqMvuWu1ZfP/v4BSeuVezRxB1D7fiud15Hg7v7TW72XKgnEk+ydLgFRXj8eBDlOzt/qp4XByiMoIvRrXRdSgcDgCuPqPxCSG42gP842LiOb6+vCk9Na3AKVrqF6lqzLYxTb4CpPyx89i01mvTS5qQmu7NFTiIeaiA5XqqN6aD5yqb8J+NshIjkq1FJzIdGdB2p7udv+q/xfnAPE2qHdiNaiB1g47z93RI7/TRqHHqQavMF5vs+1HTZv5DPM3+qs8ZF0rKkXST4TXJrLgMeXdWatdsUD2gyM0SVnplePV0RY4xdXGwfU+iuipdq/PbnzEw68ykA7zZ0L8kmlpaFss2mAnjUorI7Xe5N7Kq8cPgNnOlfBCBnIhl2tN7GGhNO8CXfpL++giG2b7oGcXsyRKMVC1wYR+AGgrD0ehPW6fC4w== forgerock-grafana-development"
+ssh_public_key = "sh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCy0IDiwz80CQFpZh36U9U6JQg21y8O7MeuvsLXP+LdL4RKLeHCiqdPr5MAk5Z1Y90VCB9BoaHJ4BZQtj/JCemG2veaYK/nY7tqsmillwqJudqzWSaNwJ73GcJtclJCr6dOgB10PZEnZkZn/db1J1llDT3CmT+g/vOt4CxG7NuYbMm7YZYdmiYskW6/RRw3cljIYUI7Ary+h6aZGNkPxZp9ikziJmlrgie2Uxa6TN/kN2htNyOligkd0k33KJF54Zm3x2M1zwuFUtiV3suudKERbuVntK707md7UfstCJJvrbvKguTiC+TtYbjFsryMchRZ50FJVIagzDIUL+QRhhvOkoJe8uFaHn7ZBG8IGQkWjsZ/q3egk3ZcO2rZArYrVgiG+dZDmC2nMRDPMCqtlFwuVT0nQWRCAmAIsmKu3veD+zQHUQ6M3dABXWauqp3gVrt2m5N1bGnD3R9sI6Ey6KoSCCJ7TUwd6dvuKiLfZ2fWf3McIHPfiVDZOmtkHRUABGSnWPuXjfdsZAez80YexxG+jsY1WrD7WNs4wb4Z6yiDfMnjfaV7NDFIl1oCoXUqohcFaWUgBTxwsBd8py+obaK8/Walg6WxuHnUp/IvmmBjz4QMnb93QUgso2B2yu48LJGxHl+vUk5vhqP74995gg2FTiCThTIBb8V41zCaHvEouQ== forgerock-development"
