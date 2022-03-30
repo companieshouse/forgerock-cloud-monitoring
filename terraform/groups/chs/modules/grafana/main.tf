@@ -1,68 +1,46 @@
-locals {
-  ami_root_block_device = tolist(data.aws_ami.grafana.block_device_mappings)[index(data.aws_ami.grafana.block_device_mappings.*.device_name, data.aws_ami.grafana.root_device_name)]
+provider "aws" {
+  region  = var.region
+  version = "~> 2.0"
 }
 
-data "aws_ami" "grafana" {
-  owners      = [var.ami_account_id]
-  most_recent = true
-  name_regex  = "^grafana-ami-\\d.\\d.\\d$"
-
-  filter {
-    name   = "name"
-    values = ["grafana-ami-*"]
-  }
+terraform {
+  backend "s3" {}
 }
 
-resource "aws_security_group" "instance" {
-  description = "Restricts access to grafana ${var.service_name} instance"
-  name_prefix = "${var.service_name}-grafana-instance-"
-  vpc_id      = var.vpc_id
+module "grafana" {
+  source = "./module-grafana"
 
-  ingress {
-    description     = "Grafana"
-    from_port       = 3000
-    to_port         = 3000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.grafana_lb.id]
-  }
-
-  egress {
-    description = "Allow outbound traffic"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = merge(var.tags, {
-    Name = "${var.service_name}-grafana-instance"
-  })
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_instance" "grafana" {
-  ami                    = data.aws_ami.grafana.id
-  iam_instance_profile   = aws_iam_instance_profile.grafana.name
-  instance_type          = var.instance_type
-  subnet_id              = element(var.subnet_ids, 0)
-  user_data_base64       = data.template_cloudinit_config.grafana.rendered
-  vpc_security_group_ids = [aws_security_group.instance.id]
-
-  root_block_device {
-    volume_size = local.ami_root_block_device.ebs.volume_size
-  }
-
-  tags = merge(var.tags, {
-    Name = "${var.service_name}-grafana"
-  })
-
-  lifecycle {
-    ignore_changes = [
-      ami,
-      user_data_base64
-    ]
-  }
+  ami_owner_id                  = var.ami_owner_id
+  ami_version_pattern           = var.grafana_ami_version_pattern
+  certificate_arn               = local.certificate_arn
+  dns_zone_name                 = local.dns_zone_name
+  environment                   = var.environment
+  instance_count                = var.grafana_instance_count
+  instance_type                 = var.grafana_instance_type
+  grafana_cidrs                 = local.grafana_cidrs
+  grafana_service_group         = var.grafana_service_group
+  grafana_service_user          = var.grafana_service_user
+  grafana_admin_password        = local.grafana_admin_password
+  ldap_auth_host                = local.ldap_auth_host
+  ldap_auth_port                = local.ldap_auth_port
+  ldap_auth_use_ssl             = var.ldap_auth_use_ssl
+  ldap_auth_start_tls           = var.ldap_auth_start_tls
+  ldap_auth_ssl_skip_verify     = var.ldap_auth_ssl_skip_verify
+  ldap_auth_bind_dn             = local.ldap_auth_bind_dn
+  ldap_auth_bind_password       = local.ldap_auth_bind_password
+  ldap_auth_search_filter       = local.ldap_auth_search_filter
+  ldap_auth_search_base_dns     = local.ldap_auth_search_base_dns
+  ldap_grafana_admin_group_dn   = local.ldap_grafana_admin_group_dn
+  ldap_grafana_viewer_group_dn  = local.ldap_grafana_viewer_group_dn
+  lvm_block_devices             = var.grafana_lvm_block_devices
+  placement_subnet_ids          = data.aws_subnet_ids.placement.ids
+  region                        = var.region
+  root_volume_size              = var.grafana_root_volume_size
+  route53_available             = local.route53_available
+  service                       = var.service
+  ssh_cidrs                     = local.administration_cidrs
+  ssh_keyname                   = local.ssh_keyname
+  subnet_ids                    = local.placement_subnet_ids_by_availability_zone
+  user_data_merge_strategy      = var.user_data_merge_strategy
+  vpc_id                        = data.aws_vpc.vpc.id
 }
