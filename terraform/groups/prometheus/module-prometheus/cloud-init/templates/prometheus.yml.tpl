@@ -21,15 +21,13 @@ write_files:
           username: "${fidc_api_key_id}"
           password: "${fidc_api_key_secret}"
           static_configs:
-          - targets:
-          - ${fidc_url}
+            - targets: ['${fidc_url}']
 
         - job_name: IDM
-        metrics_path: /monitoring/prometheus/idm
-        scheme: https
-        basic_auth:
-        username: "${fidc_api_key_id}"
-        password: "${fidc_api_key_secret}"
-        static_configs:
-        - targets:
-        - ${fidc_url}
+          metrics_path: /monitoring/prometheus/idm
+          scheme: https
+          basic_auth:
+          username: "${fidc_api_key_id}"
+          password: "${fidc_api_key_secret}"
+          static_configs:
+            - targets: ['${fidc_url}']

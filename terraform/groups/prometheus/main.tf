@@ -35,6 +35,5 @@ module "prometheus" {
   vpc_id                        = data.aws_vpc.vpc.id
   fidc_api_key_id               = var.fidc_api_key_id
   fidc_api_key_secret           = var.fidc_api_key_secret
-  fidc_url                      = var.fidc_url
-  # fidc_fidc_url                 = replace(var.fidc_url, "https://", "")
+  fidc_url                      = replace(var.fidc_url, "https://", "")
 }
