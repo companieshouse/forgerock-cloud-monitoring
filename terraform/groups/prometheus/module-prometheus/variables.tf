@@ -117,3 +117,17 @@ variable "vpc_id" {
   description = "The VPC ID in which to create resources"
   type        = string
 }
+
+variable "fidc_api_key_id" {
+  type        = string
+  description = "ForgeRock Identity Cloud logging API key ID"
+}
+
+variable "fidc_api_key_secret" {
+  type        = string
+  description = "ForgeRock Identity Cloud logging API key secret"
+}
+
+variable "fidc_url" {
+  type = string
+}

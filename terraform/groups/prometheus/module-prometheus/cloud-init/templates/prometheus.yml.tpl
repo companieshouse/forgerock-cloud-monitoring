@@ -18,18 +18,18 @@ write_files:
           metrics_path: /monitoring/prometheus/am
           scheme: https
           basic_auth:
-          username: "${api_key_id}"
-          password: "${api_key_secret}"
+          username: "${fidc_api_key_id}"
+          password: "${fidc_api_key_secret}"
           static_configs:
           - targets:
-          - ${fidc_domain}
+          - ${fidc_url}
 
         - job_name: IDM
         metrics_path: /monitoring/prometheus/idm
         scheme: https
         basic_auth:
-        username: "${api_key_id}"
-        password: "${api_key_secret}"
+        username: "${fidc_api_key_id}"
+        password: "${fidc_api_key_secret}"
         static_configs:
         - targets:
-          - ${fidc_domain}
+        - ${fidc_url}

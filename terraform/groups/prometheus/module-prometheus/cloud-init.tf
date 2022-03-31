@@ -18,9 +18,9 @@ data "template_cloudinit_config" "prometheus" {
       environment             = var.environment
       prometheus_metrics_port = var.prometheus_metrics_port
       region                  = var.region
-      api_key_id              = var.api_key_id
-      api_key_secret          = var.api_key_secret
-      fidc_domain             = var.fidc_domain
+      fidc_api_key_id         = var.fidc_api_key_id
+      fidc_api_key_secret     = var.fidc_api_key_secret
+      fidc_url                = var.fidc_url
     })
     merge_type = var.user_data_merge_strategy
   }

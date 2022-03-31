@@ -33,7 +33,8 @@ module "prometheus" {
   subnet_ids                    = local.placement_subnet_ids_by_availability_zone
   user_data_merge_strategy      = var.user_data_merge_strategy
   vpc_id                        = data.aws_vpc.vpc.id
-  api_key_id                    = var.fidc_api_key_id
-  api_key_secret                = var.fidc_api_key_secret
-  fidc_domain                   = replace(var.fidc_url, "https://", "")
+  fidc_api_key_id               = var.fidc_api_key_id
+  fidc_api_key_secret           = var.fidc_api_key_secret
+  fidc_url                      = var.fidc_url
+  # fidc_fidc_url                 = replace(var.fidc_url, "https://", "")
 }

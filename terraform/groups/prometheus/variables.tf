@@ -76,7 +76,7 @@ variable "repository_name" {
 }
 
 variable "service" {
-  default     = "logging"
+  default     = "forgerock"
   description = "The service name to be used when creating AWS resources"
   type        = string
 }
