@@ -63,13 +63,13 @@
   with_items:
     "{{ foregrock_variables }}"
 
-- name: Create forgerock reconcilliation dashboard
+- name: Create forgerock reconciliation dashboard
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
     url_username: "{{ item.grafana_admin_user }}"
     url_password: "{{ item.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/forgerock-reconcilliation.json.j2') }}"
+    body: "{{ lookup('template', 'roles/grafana/templates/forgerock-reconciliation.json.j2') }}"
     status_code: 200
     body_format: json
     validate_certs: no
