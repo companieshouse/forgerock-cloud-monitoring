@@ -14,6 +14,7 @@
       Content-Type: application/json
   with_items:
     "{{ foregrock_variables }}"
+  no_log: True
 
 - name: Create forgerock monitoring prometheus datasource
   uri:
@@ -29,6 +30,7 @@
       Content-Type: application/json
   with_items:
     "{{ foregrock_variables }}"
+  no_log: True
 
 - name: Create forgerock am overview dashboard
   uri:
@@ -62,6 +64,7 @@
       Content-Type: application/json
   with_items:
     "{{ foregrock_variables }}"
+  no_log: True
 
 - name: Create forgerock reconciliation dashboard
   uri:
@@ -78,3 +81,4 @@
       Content-Type: application/json
   with_items:
     "{{ foregrock_variables }}"
+  no_log: True
