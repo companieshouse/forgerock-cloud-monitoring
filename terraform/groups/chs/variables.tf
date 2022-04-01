@@ -112,16 +112,6 @@ variable "alerting_email_address" {
   description = "Email address for sending alert notifications"
 }
 
-variable "grafana_instance_type" {
-  type        = string
-  description = "Instance type to use for Grafana"
-}
-
-variable "prometheus_instance_type" {
-  type        = string
-  description = "Instance type to use for Prometheus"
-}
-
 variable "ami_account_id" {
   type        = string
   description = "AWS account ID for the AMI owner"

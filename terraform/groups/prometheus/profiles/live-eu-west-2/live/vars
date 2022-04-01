@@ -1,0 +1,15 @@
+prometheus_lvm_block_devices = [
+  {
+    aws_volume_size_gb: "100",
+    filesystem_resize_tool: "xfs_growfs",
+    lvm_logical_volume_device_node: "/dev/prometheus/data",
+    lvm_physical_volume_device_node: "/dev/xvdb"
+  }
+]
+
+team = "platform"
+
+# TODO - Remove these once they're provided automatically
+account_name = "live"
+environment = "live"
+repository_name = "forgerock-cloud-monitoring"
