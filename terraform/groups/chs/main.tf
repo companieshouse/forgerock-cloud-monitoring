@@ -341,6 +341,8 @@ module "cancelRecon" {
   fidc_password            = var.fidc_password
   fidc_admin_client        = var.fidc_admin_client
   fidc_admin_client_secret = var.fidc_admin_client_secret
+  fidc_monitored_component = var.fidc_mappings
+  recon_duration           = var.recon_duration
   cancel_recon_after       = var.cancel_recon_after
   sns_topic_arn            = module.alerting.sns_topic_arn
   tags                     = local.common_tags
