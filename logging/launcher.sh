@@ -8,6 +8,6 @@ case $(echo $LOG_SOURCE | tr 'a-z' 'A-Z') in
         ./tail_idm
         ;;
     *)
-        echo "No $LOG_SOURCE value found - should be AM or IDM"
+        echo "No valid LOG_SOURCE value found - should be AM or IDM. Found: \"${LOG_SOURCE}\""
         ;;
 esac
