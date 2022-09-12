@@ -10,4 +10,4 @@ RUN npm install
 
 COPY . .
 
-CMD [ "./tail_idm" ]
+CMD [ "case $LOG_SOURCE in 'AM') ./tail_am;; 'IDM') ./tail_idm;; esac" ]
