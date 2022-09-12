@@ -1,4 +1,4 @@
-data "template_file" "container_definitions" {
+data "template_file" "container_definitions_idm" {
   template = file("${path.module}/templates/container_definitions.json.tpl")
   vars = {
     task_name                 = var.task_name
@@ -10,6 +10,7 @@ data "template_file" "container_definitions" {
     fidc_url                  = var.fidc_url
     fidc_api_key_id           = var.fidc_api_key_id
     fidc_api_key_secret       = var.fidc_api_key_secret
+    log_source                = var.log_source
   }
 }
 

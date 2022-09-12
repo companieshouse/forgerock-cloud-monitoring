@@ -14,6 +14,10 @@
       {
         "name": "API_KEY_SECRET",
         "value": "${fidc_api_key_secret}"
+      },
+      {
+        "name": "LOG_SOURCE",
+        "value": "${log_source}"
       }
     ],
     "logConfiguration": {

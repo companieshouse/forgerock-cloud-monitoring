@@ -65,3 +65,7 @@ variable "log_group_name" {
 variable "log_prefix" {
   type = string
 }
+
+variable "log_source" {
+  type = string
+}
