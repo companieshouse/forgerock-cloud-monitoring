@@ -1,4 +1,4 @@
-data "template_file" "container_definitions_idm" {
+data "template_file" "container_definitions" {
   template = file("${path.module}/templates/container_definitions.json.tpl")
   vars = {
     task_name                 = var.task_name
