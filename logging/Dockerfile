@@ -10,4 +10,4 @@ RUN npm install
 
 COPY . .
 
-CMD [ "./tail_idm" ]
+ENTRYPOINT "./launcher.sh"
