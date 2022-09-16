@@ -11,6 +11,7 @@ data "template_file" "container_definitions" {
     fidc_api_key_id           = var.fidc_api_key_id
     fidc_api_key_secret       = var.fidc_api_key_secret
     log_source                = var.log_source
+    log_frequency             = var.log_frequency
   }
 }
 

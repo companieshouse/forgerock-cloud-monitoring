@@ -69,3 +69,9 @@ variable "log_prefix" {
 variable "log_source" {
   type = string
 }
+
+variable "log_frequency" {
+  type = number
+  description = "Rate, in seconds, at which logs should be retrieved from FIDC"
+  default = 10
+}
