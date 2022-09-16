@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 require('dotenv').config()
 
+const frequency = parseInt(process.env.FREQUENCY) || 10;
+
 // Specify the full base URL of the FIDC service.
 const origin = process.env.ORIGIN;
 
@@ -230,7 +232,7 @@ tail({
     api_key_id: api_key_id,
     api_key_secret: api_key_secret,
     source: source,
-    frequency: 10,
+    frequency: frequency,
     exclude: true,
     filter: misc_noise,
     showLogs: showLogs,

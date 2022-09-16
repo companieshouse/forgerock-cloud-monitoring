@@ -18,6 +18,10 @@
       {
         "name": "LOG_SOURCE",
         "value": "${log_source}"
+      },
+      {
+        "name": "LOG_FREQUENCY",
+        "value": "${log_frequency}"
       }
     ],
     "logConfiguration": {
