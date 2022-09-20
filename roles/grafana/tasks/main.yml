@@ -80,7 +80,7 @@
   no_log: False
 
 - set_fact:
-    found_dashboards: "{{ found_datasources_json | json_query('json[].uid') | list }}"
+    found_dashboards: "{{ found_dashboards_json | json_query('json[].uid') | list }}"
 
 - name: Delete existing dashboards pending re-creation
   uri:
@@ -93,7 +93,7 @@
     headers:
       Content-Type: application/json
   loop:
-    "{{ found_dashboards_json }}"
+    "{{ found_dashboards }}"
 
 - name: Create forgerock am overview dashboard
   uri:
