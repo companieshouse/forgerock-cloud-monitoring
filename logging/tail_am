@@ -22,7 +22,7 @@ For development and debugging use "am-core" and "idm-core" respectively.
 // const source = 'am-activity'
 // const source = 'am-authentication'
 // const source = 'am-config'
-const source = 'am-everything'
+const source = 'am-core,am-authentication'
 // const source = 'am-everything'
 // const source = 'ctsstore'
 // const source = 'ctsstore-access'
