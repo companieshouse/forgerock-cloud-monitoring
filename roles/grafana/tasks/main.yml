@@ -19,6 +19,9 @@
   register: found_datasources_json
   no_log: False
 
+- debug:
+    msg: "{{ found_datasources_json }}"
+
 - set_fact:
     found_datasources: "{{ found_datasources_json.json | json_query('name') | list }}"
 
