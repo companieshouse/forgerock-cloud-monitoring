@@ -80,7 +80,7 @@
   no_log: False
 
 - set_fact:
-    found_dashboards: "{{ found_datasources_json | json_query('results[*].json[].uid') | list }}"
+    found_dashboards: "{{ found_datasources_json | json_query('json[].uid') | list }}"
 
 - name: Delete existing dashboards pending re-creation
   uri:
