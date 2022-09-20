@@ -3,18 +3,19 @@
 # To avoid duplicate resource creation issues, we currently delete and recreate datasources and dashboards on each run. This isn't ideal,
 # and should be changed to a more intelligent "update changed properties" approach eventually.
 
+- set_fact:
+    grafana_admin_credentials: "{{ logging_variables | flatten(levels=1) | first }}"
+
 - name: Get existing datasources
   uri:
     url: "{{ grafana_url }}/api/datasources"
     method: GET
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     status_code: 200
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ logging_variables }}"
   register: found_datasources_json
   no_log: True
 
@@ -25,8 +26,8 @@
   uri:
     url: "{{ grafana_url }}/api/datasources/name/{{ item }}"
     method: DELETE
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     status_code: 200
     force_basic_auth: yes
     headers:
@@ -38,46 +39,40 @@
   uri:
     url: "{{ grafana_url }}/api/datasources"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/forgerock_monitoring_cloudwatch_datasource.json.j2') }}"
     status_code: 200
     body_format: json
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
 
 - name: Create forgerock monitoring prometheus datasource
   uri:
     url: "{{ grafana_url }}/api/datasources"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/forgerock_monitoring_prometheus_datasource.json.j2') }}"
     status_code: 200
     body_format: json
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
 
 - name: Get existing dashboards
   uri:
     url: "{{ grafana_url }}/api/search?query=%"
     method: GET
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     status_code: 200
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ logging_variables }}"
   register: found_dashboards_json
   no_log: True
 
@@ -88,8 +83,8 @@
   uri:
     url: "{{ grafana_url }}/api/dashboards/uid/{{ item }}"
     method: DELETE
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     status_code: 200
     force_basic_auth: yes
     headers:
@@ -101,8 +96,8 @@
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/am_overview_dashboard.json.j2') }}"
     status_code: 200
     body_format: json
@@ -110,16 +105,14 @@
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
 
 - name: Create forgerock connectors dashboard
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/forgerock-connectors.json.j2') }}"
     status_code: 200
     body_format: json
@@ -127,16 +120,14 @@
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
 
 - name: Create forgerock reconciliation dashboard
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/forgerock-reconciliation.json.j2') }}"
     status_code: 200
     body_format: json
@@ -144,16 +135,14 @@
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
 
 - name: Create forgerock idm dashboard
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/idm_dashboard.json.j2') }}"
     status_code: 200
     body_format: json
@@ -161,16 +150,14 @@
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
 
 - name: Create forgerock ig dashboard
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
-    url_username: "{{ item.grafana_admin_user }}"
-    url_password: "{{ item.grafana_admin_password }}"
+    url_username: "{{ grafana_admin_credentials.grafana_admin_user }}"
+    url_password: "{{ grafana_admin_credentials.grafana_admin_password }}"
     body: "{{ lookup('template', 'roles/grafana/templates/ig_dashboard.json.j2') }}"
     status_code: 200
     body_format: json
@@ -178,6 +165,4 @@
     force_basic_auth: yes
     headers:
       Content-Type: application/json
-  with_items:
-    "{{ foregrock_variables }}"
   no_log: True
