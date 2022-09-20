@@ -93,7 +93,7 @@
     headers:
       Content-Type: application/json
   loop:
-    "{{ found_dashboards }}"
+    "{{ found_dashboards_json }}"
 
 - name: Create forgerock am overview dashboard
   uri:
