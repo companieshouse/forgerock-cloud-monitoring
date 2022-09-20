@@ -23,7 +23,7 @@
     msg: "{{ found_datasources_json }}"
 
 - set_fact:
-    found_datasources: "{{ found_datasources_json.json | json_query('.[].name') | list }}"
+    found_datasources: "{{ found_datasources_json | json_query('json[].name') | list }}"
 
 - name: Delete existing datasources pending re-creation
   uri:
