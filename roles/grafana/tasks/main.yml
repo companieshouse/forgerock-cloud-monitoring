@@ -4,7 +4,7 @@
 # and should be changed to a more intelligent "update changed properties" approach eventually.
 
 - set_fact:
-    grafana_admin_credentials: "{{ logging_variables | flatten(levels=1) | first }}"
+    grafana_admin_credentials: "{{ logging_variables | first }}"
 
 - name: Get existing datasources
   uri:
