@@ -1,5 +1,39 @@
 ---
 
+# To avoid duplicate resource creation issues, we currently delete and recreate datasources and dashboards on each run. This isn't ideal,
+# and should be changed to a more intelligent "update changed properties" approach eventually.
+
+- name: Get existing datasources
+  uri:
+    url: "{{ grafana_url }}/api/datasources"
+    method: GET
+    url_username: "{{ item.grafana_admin_user }}"
+    url_password: "{{ item.grafana_admin_password }}"
+    status_code: 200
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/json
+  with_items:
+    "{{ logging_variables }}"
+  register: found_datasources_json
+  no_log: True
+
+- set_fact:
+    found_datasources: "{{ found_datasources_json | json_query('results[*].json[].name') | list }}"
+
+- name: Delete existing datasources pending re-creation
+  uri:
+    url: "{{ grafana_url }}/api/datasources/name/{{ item }}"
+    method: DELETE
+    url_username: "{{ item.grafana_admin_user }}"
+    url_password: "{{ item.grafana_admin_password }}"
+    status_code: 200
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/json
+  loop:
+    "{{ found_datasources }}"
+
 - name: Create forgerock monitoring cloudwatch datasource
   uri:
     url: "{{ grafana_url }}/api/datasources"
@@ -31,6 +65,37 @@
   with_items:
     "{{ foregrock_variables }}"
   no_log: True
+
+- name: Get existing dashboards
+  uri:
+    url: "{{ grafana_url }}/api/search?query=%"
+    method: GET
+    url_username: "{{ item.grafana_admin_user }}"
+    url_password: "{{ item.grafana_admin_password }}"
+    status_code: 200
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/json
+  with_items:
+    "{{ logging_variables }}"
+  register: found_dashboards_json
+  no_log: True
+
+- set_fact:
+    found_dashboards: "{{ found_datasources_json | json_query('results[*].json[].uid') | list }}"
+
+- name: Delete existing dashboards pending re-creation
+  uri:
+    url: "{{ grafana_url }}/api/dashboards/uid/{{ item }}"
+    method: DELETE
+    url_username: "{{ item.grafana_admin_user }}"
+    url_password: "{{ item.grafana_admin_password }}"
+    status_code: 200
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/json
+  loop:
+    "{{ found_dashboards }}"
 
 - name: Create forgerock am overview dashboard
   uri:
