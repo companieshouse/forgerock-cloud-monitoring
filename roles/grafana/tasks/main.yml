@@ -137,20 +137,20 @@
       Content-Type: application/json
   no_log: False
 
-# - name: Create forgerock idm dashboard
-#   uri:
-#     url: "{{ grafana_url }}/api/dashboards/db"
-#     method: POST
-#     url_username: "{{ forgerock_vars.grafana_admin_user }}"
-#     url_password: "{{ forgerock_vars.grafana_admin_password }}"
-#     body: "{{ lookup('template', 'roles/grafana/templates/idm_dashboard.json.j2') }}"
-#     status_code: 200
-#     body_format: json
-#     validate_certs: no
-#     force_basic_auth: yes
-#     headers:
-#       Content-Type: application/json
-#   no_log: False
+- name: Create forgerock idm dashboard
+  uri:
+    url: "{{ grafana_url }}/api/dashboards/db"
+    method: POST
+    url_username: "{{ forgerock_vars.grafana_admin_user }}"
+    url_password: "{{ forgerock_vars.grafana_admin_password }}"
+    body: "{{ lookup('template', 'roles/grafana/templates/idm_dashboard.json.j2') }}"
+    status_code: 200
+    body_format: json
+    validate_certs: no
+    force_basic_auth: yes
+    headers:
+      Content-Type: application/json
+  no_log: False
 
 # - name: Create forgerock ig dashboard
 #   uri:
