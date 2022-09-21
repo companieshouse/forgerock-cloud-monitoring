@@ -56,20 +56,6 @@
       Content-Type: application/json
   no_log: False
 
-- name: Create forgerock monitoring prometheus datasource
-  uri:
-    url: "{{ grafana_url }}/api/datasources"
-    method: POST
-    url_username: "{{ forgerock_vars.grafana_admin_user }}"
-    url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/forgerock_monitoring_prometheus_datasource.json.j2') }}"
-    status_code: 200
-    body_format: json
-    force_basic_auth: yes
-    headers:
-      Content-Type: application/json
-  no_log: False
-
 - name: Get existing dashboards
   uri:
     url: "{{ grafana_url }}/api/search?query=%"
