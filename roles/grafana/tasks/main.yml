@@ -6,6 +6,8 @@
 - set_fact:
     forgerock_vars: "{{ foregrock_variables | first }}"  # Yes, it's spelled like that
 
+### DATASOURCE CONFIG
+
 - name: Get existing datasources
   uri:
     url: "{{ grafana_url }}/api/datasources"
@@ -35,13 +37,20 @@
   loop:
     "{{ found_datasources }}"
 
-- name: Create forgerock monitoring cloudwatch datasource
+- name: Find datasource JSONs
+  find:
+    paths: roles/grafana/templates/datasources
+    patterns: '*.json.j2'
+  register: datasources_to_create
+
+- name: Create datasources
+  loop: "{{ datasources_to_create.files }}"
   uri:
     url: "{{ grafana_url }}/api/datasources"
     method: POST
     url_username: "{{ forgerock_vars.grafana_admin_user }}"
     url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/forgerock_monitoring_cloudwatch_datasource.json.j2') }}"
+    body: "{{ lookup('template', '{{ item.path }}') }}"
     status_code: 200
     body_format: json
     force_basic_auth: yes
@@ -49,19 +58,9 @@
       Content-Type: application/json
   no_log: False
 
-- name: Create forgerock monitoring prometheus datasource
-  uri:
-    url: "{{ grafana_url }}/api/datasources"
-    method: POST
-    url_username: "{{ forgerock_vars.grafana_admin_user }}"
-    url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/forgerock_monitoring_prometheus_datasource.json.j2') }}"
-    status_code: 200
-    body_format: json
-    force_basic_auth: yes
-    headers:
-      Content-Type: application/json
-  no_log: False
+### END DATASOURCE CONFIG
+
+### DASHBOARD CONFIG
 
 - name: Get existing dashboards
   uri:
@@ -92,13 +91,20 @@
   loop:
     "{{ found_dashboards }}"
 
-- name: Create forgerock am overview dashboard
+- name: Find dashboard JSONs
+  find:
+    paths: roles/grafana/templates/dashboards
+    patterns: '*.json.j2'
+  register: dashboards_to_create
+
+- name: Create dashboards
+  loop: "{{ dashboards_to_create.files }}"
   uri:
     url: "{{ grafana_url }}/api/dashboards/db"
     method: POST
     url_username: "{{ forgerock_vars.grafana_admin_user }}"
     url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/am_overview_dashboard.json.j2') }}"
+    body: "{{ lookup('template', '{{ item.path }}') }}"
     status_code: 200
     body_format: json
     validate_certs: no
@@ -107,32 +113,4 @@
       Content-Type: application/json
   no_log: False
 
-- name: Create forgerock connectors dashboard
-  uri:
-    url: "{{ grafana_url }}/api/dashboards/db"
-    method: POST
-    url_username: "{{ forgerock_vars.grafana_admin_user }}"
-    url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/forgerock-connectors.json.j2') }}"
-    status_code: 200
-    body_format: json
-    validate_certs: no
-    force_basic_auth: yes
-    headers:
-      Content-Type: application/json
-  no_log: False
-
-- name: Create forgerock reconciliation dashboard
-  uri:
-    url: "{{ grafana_url }}/api/dashboards/db"
-    method: POST
-    url_username: "{{ forgerock_vars.grafana_admin_user }}"
-    url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/forgerock-reconciliation.json.j2') }}"
-    status_code: 200
-    body_format: json
-    validate_certs: no
-    force_basic_auth: yes
-    headers:
-      Content-Type: application/json
-  no_log: False
+### END DASHBOARD CONFIG
