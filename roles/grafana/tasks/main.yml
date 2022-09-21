@@ -98,6 +98,9 @@
     patterns: '*.json.j2'
   register: dashboards_to_create
 
+- debug:
+    msg: "{{ dashboards_to_create }}"
+
 - name: Create dashboards
   loop: dashboards_to_create.files
   uri:
