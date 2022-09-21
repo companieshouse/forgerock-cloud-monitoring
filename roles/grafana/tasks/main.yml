@@ -6,6 +6,8 @@
 - set_fact:
     forgerock_vars: "{{ foregrock_variables | first }}"  # Yes, it's spelled like that
 
+### DATASOURCE CONFIG
+
 - name: Get existing datasources
   uri:
     url: "{{ grafana_url }}/api/datasources"
@@ -56,6 +58,10 @@
       Content-Type: application/json
   no_log: False
 
+### END DATASOURCE CONFIG
+
+### DASHBOARD CONFIG
+
 - name: Get existing dashboards
   uri:
     url: "{{ grafana_url }}/api/search?query=%"
@@ -91,9 +97,6 @@
     patterns: '*.json.j2'
   register: dashboards_to_create
 
-- debug:
-    msg: "{{ dashboards_to_create }}"
-
 - name: Create dashboards
   loop: "{{ dashboards_to_create.files }}"
   uri:
@@ -109,3 +112,5 @@
     headers:
       Content-Type: application/json
   no_log: False
+
+### END DASHBOARD CONFIG
