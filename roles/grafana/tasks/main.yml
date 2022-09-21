@@ -108,7 +108,7 @@
     method: POST
     url_username: "{{ forgerock_vars.grafana_admin_user }}"
     url_password: "{{ forgerock_vars.grafana_admin_password }}"
-    body: "{{ lookup('template', 'roles/grafana/templates/{{ item.path }}') }}"
+    body: "{{ lookup('template', '{{ item.path }}') }}"
     status_code: 200
     body_format: json
     validate_certs: no
