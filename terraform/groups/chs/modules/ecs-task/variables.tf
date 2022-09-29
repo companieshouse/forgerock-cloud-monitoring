@@ -75,3 +75,8 @@ variable "log_frequency" {
   description = "Rate, in seconds, at which logs should be retrieved from FIDC"
   default = 10
 }
+
+variable "restart_frequency_schedule" {
+  type = string
+  description = "Cron schedule on which to execute the restart"
+}
