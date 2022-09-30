@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aws_iam_role" "execution_role" {
-    name = "restart_ecs_service_${var.ecs_cluster_name}_${var.ecs_service_name}"
+    name = "restart_ecs_service_${var.ecs_service_name}"
 
     assume_role_policy = <<EOF
 {
@@ -23,7 +23,7 @@ resource "aws_iam_role" "execution_role" {
 }
 
 resource "aws_iam_role_policy" "policy" {
-    name = "grant_lambda_access_to_restart_ecs_service_${var.ecs_cluster_name}_${var.ecs_service_name}"
+    name = "grant_lambda_access_to_restart_ecs_service_${var.ecs_service_name}"
     role = aws_iam_role.execution_role
     policy = jsonencode({
         Version = "2012-10-17"
@@ -48,7 +48,7 @@ resource "aws_lambda_permission" "eventbridge" {
 }
 
 resource "aws_lambda_alias" "alias" {
-    name = "alias_restart_ecs_service_${var.ecs_cluster_name}_${var.ecs_service_name}"
+    name = "alias_restart_ecs_service_${var.ecs_service_name}"
     function_name = aws_lambda_function.restart_function.function_name
     function_version = "$LATEST"
 }
