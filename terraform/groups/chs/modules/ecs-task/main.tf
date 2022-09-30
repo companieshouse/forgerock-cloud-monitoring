@@ -47,7 +47,7 @@ module "restarter_lambda" {
   source = "../ecs-restart-lambda"
 
   ecs_cluster_arn = var.ecs_cluster_id
-  ecs_service_arn = aws_ecs_service.monitoring.arn
+  ecs_service_arn = aws_ecs_service.monitoring.id
   ecs_service_name = var.task_name
   restart_frequency_schedule = var.restart_frequency_schedule
 }
