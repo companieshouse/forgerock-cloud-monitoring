@@ -62,7 +62,7 @@ module "idm_logging" {
   tags                       = local.common_tags
   log_source                 = "idm"
   log_frequency              = 10
-  restart_frequency_schedule = "cron(0 2 * * * *)"
+  restart_frequency_schedule = "cron(0 2 * * ? *)"
 }
 
 module "am_logging" {
@@ -86,7 +86,7 @@ module "am_logging" {
   tags                       = local.common_tags
   log_source                 = "am"
   log_frequency              = 2
-  restart_frequency_schedule = "cron(0 2 * * * *)"
+  restart_frequency_schedule = "cron(0 2 * * ? *)"
 }
 
 module "rcs_monitoring" {
