@@ -11,7 +11,7 @@ data "archive_file" "lambda_code" {
 resource "aws_lambda_function" "restart_function" {
     filename = local.zip_file_path
     function_name = "ecs_service_restart_${var.ecs_service_name}"
-    role = aws_iam_role.execution_role
+    role = aws_iam_role.execution_role.arn
     handler = "index.main"
 
     source_code_hash = filebase64sha256(local.zip_file_path)

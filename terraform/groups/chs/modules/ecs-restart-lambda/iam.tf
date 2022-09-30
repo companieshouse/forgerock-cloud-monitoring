@@ -24,7 +24,7 @@ resource "aws_iam_role" "execution_role" {
 
 resource "aws_iam_role_policy" "policy" {
     name = "grant_lambda_access_to_restart_ecs_service_${var.ecs_service_name}"
-    role = aws_iam_role.execution_role
+    role = aws_iam_role.execution_role.id
     policy = jsonencode({
         Version = "2012-10-17"
         Statement = [{
