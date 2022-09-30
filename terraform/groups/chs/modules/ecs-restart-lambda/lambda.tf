@@ -4,7 +4,7 @@ locals {
 
 data "archive_file" "lambda_code" {
     type = "zip"
-    source_dir = "lambda_code"
+    source_dir = "${path.module}/lambda_code"
     output_path = local.zip_file_path
 }
 
