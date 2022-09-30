@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_event_rule" "invoker" {
-    name = "invoke_restart_${var.ecs_cluster_arn}_${var.ecs_service_name}"
+    name = "invoke_restart_${var.ecs_service_name}"
     description = "Trigger restart of ${var.ecs_service_name} svc on ECS cluster ${var.ecs_cluster_arn}"
     schedule_expression = var.restart_frequency_schedule
 }
