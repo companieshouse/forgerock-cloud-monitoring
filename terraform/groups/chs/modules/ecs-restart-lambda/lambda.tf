@@ -14,7 +14,7 @@ resource "aws_lambda_function" "restart_function" {
     role = aws_iam_role.execution_role.arn
     handler = "index.main"
 
-    source_code_hash = filebase64sha256(local.zip_file_path)
+    source_code_hash = data.archive_file.lambda_code.output_base64sha256
     runtime = "nodejs12.x"
 
     environment {
