@@ -39,6 +39,11 @@ resource "aws_iam_role_policy" "policy" {
     })
 }
 
+resource "aws_iam_role_policy_attachment" "LambdaBasicExecution" {
+  role       = aws_iam_role.execution_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSLambdaBasicExecutionRole"
+}
+
 resource "aws_lambda_permission" "eventbridge" {
     statement_id = "AllowEventBridgeToExecute"
     action = "lambda:InvokeFunction"
