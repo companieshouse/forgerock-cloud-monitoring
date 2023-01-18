@@ -383,7 +383,7 @@
           "values": true
         },
         "lines": true,
-        "linewth": 1,
+        "linewidth": 1,
         "links": [],
         "nullPointMode": "null",
         "options": {
@@ -400,7 +400,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "sum(irate(am_session_count{job=~\"$instance\",session_type=~\"authentication-.*\",operation=\"create\",outcome=\"success\"}[1m])) by (job)",
+            "expr": "sum by (job) (irate(am_session_count{job=~\"$instance\",session_type=~\"authentication-.*\",operation=\"create\",outcome=\"success\"}[1m]))",
             "format": "time_series",
             "he": false,
             "interval": "",
@@ -472,7 +472,7 @@
           "values": true
         },
         "lines": true,
-        "linewth": 1,
+        "linewidth": 1,
         "links": [],
         "nullPointMode": "null",
         "options": {
@@ -667,7 +667,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "sum(irate(am_session_count{job=~\"$instance\",session_type=~\"authentication-.*\",operation=\"max-timeout\"}[1m])) by  (job)",
+            "expr": "sum by (job) (irate(am_session_count{job=~\"$instance\",session_type=~\"authentication-.*\",operation=\"max-timeout\"}[1m]))",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -992,7 +992,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "sum(irate(am_session_count{job=~\"$instance\",session_type!~\"authentication-client-based|authentication-cts-based|authentication-in-memory\",outcome=\"success\",operation=~\"create\"}[1m])) by (job)",
+            "expr": "sum by (job) (irate(am_session_count{job=~\"$instance\",session_type!~\"authentication-client-based|authentication-cts-based|authentication-in-memory\",outcome=\"success\",operation=~\"create\"}[1m]))",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -1080,7 +1080,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "sum(irate(am_session_count{job=~\"$instance\",session_type!~\"authentication-client-based|authentication-cts-based|authentication-in-memory\",outcome=\"success\",operation=~\"logout|destroy|idle-timeout|max-timeout\"}[1m])) by (job)",
+            "expr": "sum by (job) (irate(am_session_count{job=~\"$instance\",session_type!~\"authentication-client-based|authentication-cts-based|authentication-in-memory\",outcome=\"success\",operation=~\"logout|destroy|idle-timeout|max-timeout\"}[1m]))",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -2340,7 +2340,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "irate(am_oauth2_grant_count{job=~\"$instance\"}[90s])   ",
+            "expr": "irate(am_oauth2_grant_revoke_count{job=~\"$instance\"}[90s])   ",
             "format": "time_series",
             "instant": false,
             "intervalFactor": 1,
@@ -2350,7 +2350,7 @@
         ],
         "thresholds": [],
         "timeRegions": [],
-        "title": "OAuth2 Grant Throughput",
+        "title": "OAuth2 Grant Revokes Throughput",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -2767,7 +2767,7 @@
         "steppedLine": false,
         "targets": [
           {
-            "expr": "sum(irate(am_authorization_policy_set_evaluate_count{job=~\"$instance\"}[1m])) by (job)",
+            "expr": "sum by (job) (irate(am_authorization_policy_set_evaluate_count{job=~\"$instance\"}[1m]))",
             "format": "time_series",
             "intervalFactor": 1,
             "legendFormat": "{% raw %}{{job}}{% endraw %}",
@@ -2885,225 +2885,6 @@
             "format": "short",
             "logBase": 1,
             "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false
-        }
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 45
-        },
-        "id": 2,
-        "panels": [],
-        "repeat": "instance",
-        "title": "JVM ($instance)",
-        "type": "row"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": {
-          "type": "prometheus",
-          "uid": "forgerock-prom"
-        },
-        "editable": true,
-        "error": false,
-        "fill": 1,
-        "fillGradient": 0,
-        "grid": {},
-        "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 0,
-          "y": 46
-        },
-        "hiddenSeries": false,
-        "id": 6,
-        "legend": {
-          "alignAsTable": true,
-          "avg": true,
-          "current": true,
-          "max": true,
-          "min": true,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "links": [],
-        "nullPointMode": "connected",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "8.4.3",
-        "pointradius": 5,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "expr": "am_jvm_free_used_memory_bytes{job=~\"$instance\"}",
-            "format": "time_series",
-            "interval": "",
-            "intervalFactor": 2,
-            "legendFormat": "{% raw %}{{job}}{% endraw %} JVM Free Memory",
-            "refId": "C",
-            "target": "*.ds.jvm-memory-usage.memory-usage.total.used"
-          },
-          {
-            "expr": "am_jvm_used_memory_bytes{job=~\"$instance\"}",
-            "format": "time_series",
-            "instant": false,
-            "interval": "",
-            "intervalFactor": 2,
-            "legendFormat": "{% raw %}{{job}}{% endraw %} JVM Used Memory",
-            "refId": "A",
-            "target": "*.ds.jvm-memory-usage.memory-usage.total.used"
-          },
-          {
-            "expr": "am_jvm_max_memory_bytes{job=~\"$instance\"}",
-            "format": "time_series",
-            "hide": false,
-            "intervalFactor": 2,
-            "legendFormat": "{% raw %}{{job}}{% endraw %} JVM Max Memory",
-            "refId": "B",
-            "target": "*.ds.jvm-memory-usage.memory-usage.total.used"
-          }
-        ],
-        "thresholds": [],
-        "timeRegions": [],
-        "title": "Memory Usage",
-        "tooltip": {
-          "msResolution": false,
-          "shared": true,
-          "sort": 0,
-          "value_type": "cumulative"
-        },
-        "type": "graph",
-        "xaxis": {
-          "mode": "time",
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "bytes",
-            "logBase": 1,
-            "show": true
-          },
-          {
-            "format": "short",
-            "logBase": 1,
-            "show": false
-          }
-        ],
-        "yaxis": {
-          "align": false
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": {
-          "type": "prometheus",
-          "uid": "forgerock-prom"
-        },
-        "editable": true,
-        "error": false,
-        "fill": 1,
-        "fillGradient": 0,
-        "grid": {},
-        "gridPos": {
-          "h": 6,
-          "w": 12,
-          "x": 12,
-          "y": 46
-        },
-        "hiddenSeries": false,
-        "id": 4,
-        "legend": {
-          "alignAsTable": true,
-          "avg": true,
-          "current": true,
-          "max": true,
-          "min": true,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "links": [],
-        "nullPointMode": "connected",
-        "options": {
-          "alertThreshold": true
-        },
-        "percentage": false,
-        "pluginVersion": "8.4.3",
-        "pointradius": 5,
-        "points": false,
-        "renderer": "flot",
-        "seriesOverrides": [],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "expr": "rate(am_jvm_garbage_collector_ps_marksweep_count{job=~\"$instance\"}[1m])",
-            "format": "time_series",
-            "intervalFactor": 2,
-            "legendFormat": "{% raw %}{{job}}{% endraw %} GC PS MarkSweep m1_rate",
-            "refId": "A",
-            "target": "perSecond(*.ds.jvm-memory-usage.garbage-collector.*.count)"
-          },
-          {
-            "expr": "rate(am_jvm_garbage_collector_ps_scavenge_count{job=~\"$instance\"}[1m])",
-            "format": "time_series",
-            "intervalFactor": 2,
-            "legendFormat": "{% raw %}{{job}}{% endraw %} GC PS Scavenge m1_rate",
-            "refId": "B"
-          }
-        ],
-        "thresholds": [],
-        "timeRegions": [],
-        "title": "Garbage Collections",
-        "tooltip": {
-          "msResolution": false,
-          "shared": true,
-          "sort": 0,
-          "value_type": "cumulative"
-        },
-        "type": "graph",
-        "xaxis": {
-          "mode": "time",
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "ops",
-            "logBase": 1,
-            "show": true
-          },
-          {
-            "format": "short",
-            "logBase": 1,
-            "show": false
           }
         ],
         "yaxis": {
