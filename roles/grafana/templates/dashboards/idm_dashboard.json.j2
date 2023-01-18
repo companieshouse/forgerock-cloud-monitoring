@@ -719,7 +719,7 @@
                 "steppedLine": false,
                 "targets": [
                     {
-                      "expr": "sum(rate(idm_jvm_free_used_memory_bytes{job=~\"$instance\"}))",
+                      "expr": "sum(rate(idm_jvm_free_used_memory_bytes{job=~\"$instance\"}[15m]))",
                       "format": "time_series",
                       "interval": "",
                       "intervalFactor": 2,
@@ -728,7 +728,7 @@
                       "target": "*.ds.jvm-memory-usage.memory-usage.total.used"
                     },
                     {
-                      "expr": "sum(rate(idm_jvm_used_memory_bytes{job=~\"$instance\"}))",
+                      "expr": "sum(rate(idm_jvm_used_memory_bytes{job=~\"$instance\"}[15m]))",
                       "format": "time_series",
                       "instant": false,
                       "interval": "",
@@ -738,7 +738,7 @@
                       "target": "*.ds.jvm-memory-usage.memory-usage.total.used"
                     },
                     {
-                      "expr": "sum(rate(idm_jvm_max_memory_bytes{job=~\"$instance\"}))",
+                      "expr": "sum(rate(idm_jvm_max_memory_bytes{job=~\"$instance\"}[15m]))",
                       "format": "time_series",
                       "hide": false,
                       "intervalFactor": 2,
@@ -865,7 +865,7 @@
                 ],
                 "yaxis": {
                     "align": false
-                },
+                }
           },
           {
               "collapsed": false,
@@ -2031,7 +2031,7 @@
                   "steppedLine": false,
                   "targets": [
                       {
-                        "expr": "sum(rate(idm_script_0312d0105080e76a7cc458be941573c56d63e213:org_forgerock_openidm_customendpoint_read_count{job=~\"$instance\"}[$aggregation_window]))",
+                        "expr": "sum(rate(idm_script_0312d0105080e76a7cc458be941573c56d63e213:org_forgerock_openidm_customendpoint_read_count{job=~\"$instance\"}[15m]))",
                         "format": "time_series",
                         "interval": "",
                         "intervalFactor": 2,
@@ -2120,7 +2120,7 @@
                   "steppedLine": false,
                   "targets": [
                       {
-                        "expr": "sum(rate(idm_script_0312d0105080e76a7cc458be941573c56d63e213:org_forgerock_openidm_customendpoint_read_seconds{job=~\"$instance\"}[$aggregation_window]))",
+                        "expr": "sum(rate(idm_script_0312d0105080e76a7cc458be941573c56d63e213:org_forgerock_openidm_customendpoint_read_seconds{job=~\"$instance\"}[15m]))",
                         "format": "time_series",
                         "intervalFactor": 2,
                         "legendFormat": "",
@@ -2156,7 +2156,7 @@
                   ],
                   "yaxis": {
                       "align": false
-                  },
+                  }
             }
       ],
       "refresh": "5s",
