@@ -2029,7 +2029,7 @@
                   "steppedLine": false,
                   "targets": [
                       {
-                        "expr": "sum(rate(idm_script_0312d0105080e76a7cc458be941573c56d63e213:org_forgerock_openidm_customendpoint_read_count{job=~\"$instance\"}[15m]))",
+                        "expr": "rate(idm_script_0312d0105080e76a7cc458be941573c56d63e213:org_forgerock_openidm_customendpoint_read_count{job=~\"$instance\"}[15m])",
                         "format": "time_series",
                         "interval": "",
                         "intervalFactor": 2,
