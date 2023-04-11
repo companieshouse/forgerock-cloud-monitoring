@@ -57,7 +57,7 @@ module "idm_logging" {
   fidc_url                   = var.fidc_url
   fidc_api_key_id            = var.fidc_api_key_id
   fidc_api_key_secret        = var.fidc_api_key_secret
-  log_group_name             = var.service_name
+  service_name               = var.service_name
   log_prefix                 = "idm_logging"
   tags                       = local.common_tags
   log_source                 = "idm"
@@ -81,7 +81,7 @@ module "am_logging" {
   fidc_url                   = var.fidc_url
   fidc_api_key_id            = var.fidc_api_key_id
   fidc_api_key_secret        = var.fidc_api_key_secret
-  log_group_name             = var.service_name
+  service_name               = var.service_name
   log_prefix                 = "am_logging"
   tags                       = local.common_tags
   log_source                 = "am"

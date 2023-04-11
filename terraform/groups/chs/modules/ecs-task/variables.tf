@@ -58,7 +58,7 @@ variable "fidc_api_key_secret" {
   type = string
 }
 
-variable "log_group_name" {
+variable "service_name" {
   type = string
 }
 
