@@ -143,3 +143,38 @@ variable "certificate_domain" {
   description = "The domain used to look up existing certificates"
   default     = "N/A"
 }
+
+variable "aws_access_key_id" {
+  type = string
+  description = "AWS Access Key ID"
+}
+
+variable "aws_secret_access_key" {
+  type = string
+  description = "AWS Secret Access Key"
+}
+
+variable "cloudwatch_namespace" {
+  type = string
+  description = "Cloudwatch namespace for prometheus to cloudwatch to push to"
+}
+
+variable "cloudwatch_publish_timeout" {
+  type = string
+  description = "Timeout for prometheus to cloudwatch"
+}
+
+variable "prometheus_scrape_interval" {
+  type = string
+  description = "Interval between prometheus scrapes"
+}
+
+variable "idm_prometheus_scrape_url" {
+  type = string
+  description = "Scrape URL for IDM prometheus metrics"
+}
+
+variable "am_prometheus_scrape_url" {
+  type = string
+  description = "Scrape URL for AM prometheus metrics"
+}

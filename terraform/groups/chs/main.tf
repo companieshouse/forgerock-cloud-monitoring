@@ -89,6 +89,58 @@ module "am_logging" {
   restart_frequency_schedule = "cron(0 2 * * ? *)"
 }
 
+module "idm_prometheus_to_cloudwatch" {
+  source                     = "./modules/ecs-task-prometheus-to-cloudwatch"
+  depends_on                 = [module.cloudwatch]
+  region                     = var.region
+  task_name                  = "idm_prometheus_to_cloudwatch"
+  subnet_ids                 = data.aws_subnet_ids.subnets.ids
+  ecs_cluster_id             = module.ecs.cluster_id
+  ecs_task_role_arn          = module.ecs.task_role_arn
+  ecs_task_security_group_id = module.ecs.task_security_group_id
+  container_image_version    = "logging-${var.container_image_version}"
+  ecr_url                    = var.ecr_url
+  task_cpu                   = var.task_cpu
+  task_memory                = var.task_memory
+  service_name               = var.service_name
+  log_prefix                 = "idm_prometheus_to_cloudwatch"
+  tags                       = local.common_tags
+  aws_access_key_id          = var.aws_access_key_id
+  aws_secret_access_key      = var.aws_secret_access_key
+  cloudwatch_namespace       = var.cloudwatch_namespace
+  cloudwatch_publish_timeout = var.cloudwatch_publish_timeout
+  prometheus_scrape_interval = var.prometheus_scrape_interval
+  fidc_api_key_id            = var.fidc_api_key_id
+  fidc_api_key_secret        = var.fidc_api_key_secret
+  prometheus_scrape_url      = var.idm_prometheus_scrape_url
+}
+
+module "am_prometheus_to_cloudwatch" {
+  source                     = "./modules/ecs-task-prometheus-to-cloudwatch"
+  depends_on                 = [module.cloudwatch]
+  region                     = var.region
+  task_name                  = "am_prometheus_to_cloudwatch"
+  subnet_ids                 = data.aws_subnet_ids.subnets.ids
+  ecs_cluster_id             = module.ecs.cluster_id
+  ecs_task_role_arn          = module.ecs.task_role_arn
+  ecs_task_security_group_id = module.ecs.task_security_group_id
+  container_image_version    = "logging-${var.container_image_version}"
+  ecr_url                    = var.ecr_url
+  task_cpu                   = var.task_cpu
+  task_memory                = var.task_memory
+  service_name               = var.service_name
+  log_prefix                 = "am_prometheus_to_cloudwatch"
+  tags                       = local.common_tags
+  aws_access_key_id          = var.aws_access_key_id
+  aws_secret_access_key      = var.aws_secret_access_key
+  cloudwatch_namespace       = var.cloudwatch_namespace
+  cloudwatch_publish_timeout = var.cloudwatch_publish_timeout
+  prometheus_scrape_interval = var.prometheus_scrape_interval
+  fidc_api_key_id            = var.fidc_api_key_id
+  fidc_api_key_secret        = var.fidc_api_key_secret
+  prometheus_scrape_url      = var.am_prometheus_scrape_url
+}
+
 module "rcs_monitoring" {
   source                   = "./modules/cloudwatch-canary"
   region                   = var.region
