@@ -78,6 +78,7 @@ module.exports = function({
         }).join("&")
     }
 
+    let errorCount=0;
     /**
      * Obtains logs from the '/monitoring/logs/tail' endpoint.
      * Keeps track of the last request's `pagedResultsCookie` to avoid overlaps in the delivered content.
@@ -131,9 +132,22 @@ module.exports = function({
                         params._pagedResultsCookie = logsObject.pagedResultsCookie;
                     }
                 })
+                errorCount=0;
                 setTimeout(getLogs, getTimeout(rateLimitReset));
             }
-        )
+        ).on("error", function (err){
+            //If there is an error retry again to get the logs
+            console.log(err)
+            errorCount++
+            //if after 10 retries we still can't get the logs, then exit the app to kill the container so our health check monitor for the container registers an issue and starts up another one
+            if(errorCount > 10){
+                 console.log("Reached maximum number of retries to get logs, exiting container")
+                 process.exit(1)
+             }
+            console.log("Trying to get logs again... Attempt " + errorCount)
+            setTimeout(getLogs, getTimeout(rateLimitReset));
+        });
+
     }
 
     function getTimeout(rateLimitReset) {
