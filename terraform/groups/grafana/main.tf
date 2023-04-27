@@ -1,6 +1,6 @@
 provider "aws" {
   region  = var.region
-  version = "~> 2.0"
+  version = "~> 3.0"
 }
 
 terraform {
@@ -10,6 +10,7 @@ terraform {
 module "grafana" {
   source = "./module-grafana"
 
+  admin_prefix_list_id          = data.aws_ec2_managed_prefix_list.admin_cidrs.id
   ami_owner_id                  = var.ami_owner_id
   ami_version_pattern           = var.grafana_ami_version_pattern
   certificate_arn               = local.certificate_arn

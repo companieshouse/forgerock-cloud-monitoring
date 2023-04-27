@@ -1,3 +1,8 @@
+variable "admin_prefix_list_id" {
+  type        = string
+  description = "Resource ID for the prefix list containing administrative CIDRs"
+}
+
 variable "ami_owner_id" {
   type        = string
   description = "The ID of the AMI owner"

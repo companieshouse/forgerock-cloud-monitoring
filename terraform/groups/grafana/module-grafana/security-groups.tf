@@ -41,11 +41,12 @@ resource "aws_security_group" "grafana_load_balancer" {
   vpc_id = var.vpc_id
 
   ingress {
-    description = "Grafana"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = var.grafana_cidrs
+    description     = "Grafana"
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    cidr_blocks     = var.grafana_cidrs
+    prefix_list_ids = [var.admin_prefix_list_id]
   }
 
   egress {
