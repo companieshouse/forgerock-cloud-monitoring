@@ -1,10 +1,21 @@
-provider "aws" {
-  region  = var.region
-  version = "~> 3.0"
+terraform {
+  required_version = ">= 0.13.0, < 0.14.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0, < 4.0"
+    }
+    vault = {
+      source  = "hashicorp/vault"
+      version = "~> 2.0"
+    }
+  }
+  backend "s3" {}
 }
 
-terraform {
-  backend "s3" {}
+provider "aws" {
+  region = var.region
 }
 
 module "grafana" {

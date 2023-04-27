@@ -16,13 +16,7 @@ resource "aws_route53_record" "grafana" {
 }
 
 resource "aws_route53_record" "certificate_validation" {
-  for_each = {
-    for dvo in local.acm_certificate_domain_validation_options : dvo.domain_name => {
-      name    = dvo.resource_record_name
-      type    = dvo.resource_record_type
-      records = [dvo.resource_record_value]
-    } if var.route53_available
-  }
+  for_each = local.acm_certificate_domain_validation_options
 
   allow_overwrite = true
   zone_id         = data.aws_route53_zone.zone[0].zone_id
