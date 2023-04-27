@@ -16,13 +16,20 @@ resource "aws_route53_record" "grafana" {
 }
 
 resource "aws_route53_record" "certificate_validation" {
-  count   = var.route53_available ? 1 : 0
+  for_each = {
+    for dvo in local.acm_certificate_domain_validation_options : dvo.domain_name => {
+      name    = dvo.resource_record_name
+      type    = dvo.resource_record_type
+      records = [dvo.resource_record_value]
+    } if var.route53_available
+  }
 
-  zone_id = data.aws_route53_zone.zone[0].zone_id
-  name    = aws_acm_certificate.certificate[0].domain_validation_options[0].resource_record_name
-  type    = aws_acm_certificate.certificate[0].domain_validation_options[0].resource_record_type
-  records = [aws_acm_certificate.certificate[0].domain_validation_options[0].resource_record_value]
-  ttl     = 60
+  allow_overwrite = true
+  zone_id         = data.aws_route53_zone.zone[0].zone_id
+  name            = each.value.name
+  type            = each.value.type
+  records         = each.value.records
+  ttl             = 60
 }
 
 
