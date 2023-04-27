@@ -4,18 +4,18 @@ resource "aws_security_group" "grafana_instances" {
   vpc_id = var.vpc_id
 
   ingress {
-    description = "Inbound SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = var.ssh_cidrs
+    description     = "Inbound SSH"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    prefix_list_ids = [var.admin_prefix_list_id]
   }
 
   ingress {
-    description = "Grafana"
-    from_port   = 3000
-    to_port     = 3000
-    protocol    = "tcp"
+    description     = "Grafana"
+    from_port       = 3000
+    to_port         = 3000
+    protocol        = "tcp"
     security_groups = [aws_security_group.grafana_load_balancer.id]
   }
 

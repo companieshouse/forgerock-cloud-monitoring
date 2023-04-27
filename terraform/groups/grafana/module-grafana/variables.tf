@@ -148,11 +148,6 @@ variable "service" {
   type        = string
 }
 
-variable "ssh_cidrs" {
-  description = "The SSH of the CIDR to be used"
-  type = list(string)
-}
-
 variable "ssh_keyname" {
   description = "The SSH keypair name to use for remote connectivity"
   type        = string

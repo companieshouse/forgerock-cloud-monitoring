@@ -29,7 +29,7 @@ module "grafana" {
   environment                   = var.environment
   instance_count                = var.grafana_instance_count
   instance_type                 = var.grafana_instance_type
-  grafana_cidrs                 = local.grafana_cidrs
+  grafana_cidrs                 = local.concourse_worker_cidrs
   grafana_service_group         = var.grafana_service_group
   grafana_service_user          = var.grafana_service_user
   grafana_admin_password        = local.grafana_admin_password
@@ -50,7 +50,6 @@ module "grafana" {
   root_volume_size              = var.grafana_root_volume_size
   route53_available             = local.route53_available
   service                       = var.service
-  ssh_cidrs                     = local.administration_cidrs
   ssh_keyname                   = local.ssh_keyname
   subnet_ids                    = local.placement_subnet_ids_by_availability_zone
   user_data_merge_strategy      = var.user_data_merge_strategy
