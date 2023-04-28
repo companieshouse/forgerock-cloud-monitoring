@@ -9,15 +9,6 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "networking" {
-  backend = "s3"
-  config = {
-    bucket = "${var.environment}-${var.region}.terraform-state.ch.gov.uk"
-    key    = "aws-common-infrastructure-terraform/common-${var.region}/networking.tfstate"
-    region = var.region
-  }
-}
-
 provider "aws" {
   region = var.region
 }
