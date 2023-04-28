@@ -1,15 +1,27 @@
-provider "aws" {
-  region  = var.region
-  version = "~> 2.0"
+terraform {
+  required_version = ">= 0.13.0, < 0.14.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0, < 4.0"
+    }
+    vault = {
+      source  = "hashicorp/vault"
+      version = "~> 2.0"
+    }
+  }
+  backend "s3" {}
 }
 
-terraform {
-  backend "s3" {}
+provider "aws" {
+  region = var.region
 }
 
 module "grafana" {
   source = "./module-grafana"
 
+  admin_prefix_list_id          = data.aws_ec2_managed_prefix_list.admin_cidrs.id
   ami_owner_id                  = var.ami_owner_id
   ami_version_pattern           = var.grafana_ami_version_pattern
   certificate_arn               = local.certificate_arn
@@ -17,7 +29,7 @@ module "grafana" {
   environment                   = var.environment
   instance_count                = var.grafana_instance_count
   instance_type                 = var.grafana_instance_type
-  grafana_cidrs                 = local.grafana_cidrs
+  grafana_cidrs                 = local.concourse_worker_cidrs
   grafana_service_group         = var.grafana_service_group
   grafana_service_user          = var.grafana_service_user
   grafana_admin_password        = local.grafana_admin_password
@@ -38,7 +50,6 @@ module "grafana" {
   root_volume_size              = var.grafana_root_volume_size
   route53_available             = local.route53_available
   service                       = var.service
-  ssh_cidrs                     = local.administration_cidrs
   ssh_keyname                   = local.ssh_keyname
   subnet_ids                    = local.placement_subnet_ids_by_availability_zone
   user_data_merge_strategy      = var.user_data_merge_strategy

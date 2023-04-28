@@ -9,7 +9,6 @@ locals {
   concourse_worker_cidrs = jsondecode(local.secrets.concourse_worker_cidrs)
   dns_zone_name = local.secrets.dns_zone_name
   grafana_admin_password = local.secrets.grafana_admin_password
-  internal_cidrs = values(data.terraform_remote_state.networking.outputs.internal_cidrs)
   ldap_auth_bind_dn = local.secrets.ldap_auth_bind_dn
   ldap_auth_bind_password = local.secrets.ldap_auth_bind_password
   ldap_auth_host = local.secrets.ldap_auth_host
@@ -24,11 +23,7 @@ locals {
   ssh_keyname = "${var.service}-${var.environment}.pem"
   vpc_id = data.aws_vpc.vpc.id
   vpc_name = local.secrets.vpc_name
-  vpn_cidrs = values(data.terraform_remote_state.networking.outputs.vpn_cidrs)
 
-  administration_cidrs = concat(local.internal_cidrs, local.vpn_cidrs)
   placement_subnet_ids = [for subnet in values(data.aws_subnet.placement) : lookup(subnet, "id")]
   placement_subnet_ids_by_availability_zone = values(zipmap(local.placement_subnet_availability_zones, local.placement_subnet_ids))
-
-  grafana_cidrs = concat(local.administration_cidrs, local.concourse_worker_cidrs)
 }

@@ -10,7 +10,7 @@ resource "aws_acm_certificate_validation" "certificate" {
   count                   = var.route53_available ? 1 : 0
 
   certificate_arn         = aws_acm_certificate.certificate[0].arn
-  validation_record_fqdns = [aws_route53_record.certificate_validation[0].fqdn]
+  validation_record_fqdns = [for record in aws_route53_record.certificate_validation : record.fqdn]
 }
 
 resource "aws_lb" "prometheus" {

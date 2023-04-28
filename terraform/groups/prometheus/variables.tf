@@ -3,6 +3,12 @@ variable "account_name" {
   type        = string
 }
 
+variable "admin_cidrs_prefix_list_name" {
+  default     = "administration-cidr-ranges"
+  description = "Name of the prefix list containing administration cidrs"
+  type        = string
+}
+
 variable "ami_owner_id" {
   type        = string
   description = "The ID of the AMI owner"

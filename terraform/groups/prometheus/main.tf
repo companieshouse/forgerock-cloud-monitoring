@@ -1,15 +1,27 @@
-provider "aws" {
-  region  = var.region
-  version = "~> 2.0"
+terraform {
+  required_version = ">= 0.13.0, < 0.14.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0, < 4.0"
+    }
+    vault = {
+      source  = "hashicorp/vault"
+      version = "~> 2.0"
+    }
+  }
+  backend "s3" {}
 }
 
-terraform {
-  backend "s3" {}
+provider "aws" {
+  region = var.region
 }
 
 module "prometheus" {
   source = "./module-prometheus"
 
+  admin_prefix_list_id          = data.aws_ec2_managed_prefix_list.admin_cidrs.id
   ami_owner_id                  = var.ami_owner_id
   ami_version_pattern           = var.prometheus_ami_version_pattern
   certificate_arn               = local.certificate_arn
@@ -18,7 +30,7 @@ module "prometheus" {
   environment                   = var.environment
   instance_count                = var.prometheus_instance_count
   instance_type                 = var.prometheus_instance_type
-  prometheus_cidrs              = local.prometheus_cidrs
+  prometheus_cidrs              = local.placement_subnet_cidrs
   prometheus_service_group      = var.prometheus_service_group
   prometheus_service_user       = var.prometheus_service_user
   lvm_block_devices             = var.prometheus_lvm_block_devices
@@ -28,7 +40,6 @@ module "prometheus" {
   root_volume_size              = var.prometheus_root_volume_size
   route53_available             = local.route53_available
   service                       = var.service
-  ssh_cidrs                     = local.administration_cidrs
   ssh_keyname                   = local.ssh_keyname
   subnet_ids                    = local.placement_subnet_ids_by_availability_zone
   user_data_merge_strategy      = var.user_data_merge_strategy
