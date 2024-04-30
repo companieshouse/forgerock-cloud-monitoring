@@ -21,6 +21,7 @@ resource "aws_security_group" "ecs_tasks" {
   vpc_id      = var.vpc_id
 
   egress {
+    description = "Allow all traffic out on port 0"
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
