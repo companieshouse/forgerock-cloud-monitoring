@@ -14,3 +14,9 @@ variable "tags" {
     Team           = string
   })
 }
+
+variable "secret_arns" {
+  description = "List of SSM Parameter ARNs the task needs to read"
+  type        = list(string)
+  default     = []
+}

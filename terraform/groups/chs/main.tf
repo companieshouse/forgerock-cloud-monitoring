@@ -22,6 +22,12 @@ data "aws_subnets" "data_subnets" {
 ###
 # Modules
 ###
+module "secrets" {
+  source      = "./modules/secrets"
+  name_prefix = "${var.environment}-${var.service_name}"
+  secrets     = data.vault_generic_secret.secrets.data
+}
+
 module "cloudwatch" {
   source            = "./modules/cloudwatch"
   region            = var.region
@@ -43,6 +49,7 @@ module "ecs" {
   service_name = var.service_name
   vpc_id       = data.aws_vpc.vpc.id
   tags         = local.common_tags
+  secret_arns  = values(module.secrets.secrets_arn_map)
 }
 
 module "idm_logging" {
@@ -59,8 +66,8 @@ module "idm_logging" {
   task_cpu                   = var.task_cpu
   task_memory                = var.task_memory
   fidc_url                   = var.fidc_url
-  fidc_api_key_id            = var.fidc_api_key_id
-  fidc_api_key_secret        = var.fidc_api_key_secret
+  fidc_api_key_id            = module.secrets.secrets_arn_map["var.fidc_api_key_id"]
+  fidc_api_key_secret        = module.secrets.secrets_arn_map["fidc_api_key_secret"]
   service_name               = var.service_name
   log_prefix                 = "idm_logging"
   tags                       = local.common_tags
@@ -83,8 +90,8 @@ module "am_logging" {
   task_cpu                   = var.task_cpu
   task_memory                = var.task_memory
   fidc_url                   = var.fidc_url
-  fidc_api_key_id            = var.fidc_api_key_id
-  fidc_api_key_secret        = var.fidc_api_key_secret
+  fidc_api_key_id            = module.secrets.secrets_arn_map["var.fidc_api_key_id"]
+  fidc_api_key_secret        = module.secrets.secrets_arn_map["fidc_api_key_secret"]
   service_name               = var.service_name
   log_prefix                 = "am_logging"
   tags                       = local.common_tags

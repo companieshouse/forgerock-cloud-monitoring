@@ -71,12 +71,12 @@ variable "log_source" {
 }
 
 variable "log_frequency" {
-  type = number
+  type        = number
   description = "Rate, in seconds, at which logs should be retrieved from FIDC"
-  default = 10
+  default     = 10
 }
 
 variable "restart_frequency_schedule" {
-  type = string
+  type        = string
   description = "Cron schedule on which to execute the restart"
 }

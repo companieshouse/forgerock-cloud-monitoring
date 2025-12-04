@@ -8,14 +8,6 @@
         "value": "${fidc_url}"
       },
       {
-        "name": "API_KEY_ID",
-        "value": "${fidc_api_key_id}"
-      },
-      {
-        "name": "API_KEY_SECRET",
-        "value": "${fidc_api_key_secret}"
-      },
-      {
         "name": "LOG_SOURCE",
         "value": "${log_source}"
       },
@@ -24,6 +16,16 @@
         "value": "${log_frequency}"
       }
     ],
+    "secrets": [
+      {
+        "name": "API_KEY_SECRET",
+        "valueFrom": "${fidc_api_key_secret}"
+      },
+      {
+        "name": "API_KEY_ID",
+        "valueFrom": "${fidc_api_key_id}"
+      },
+    ]
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {

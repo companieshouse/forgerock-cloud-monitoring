@@ -71,7 +71,7 @@ variable "fidc_user" {
 }
 
 variable "fidc_password" {
-  type      = string
+  type = string
 }
 
 variable "fidc_admin_client" {
@@ -79,7 +79,7 @@ variable "fidc_admin_client" {
 }
 
 variable "fidc_admin_client_secret" {
-  type      = string
+  type = string
 }
 
 variable "fidc_connector_group" {
