@@ -1,3 +1,8 @@
+variable "admin_prefix_list_id" {
+  type        = string
+  description = "Resource ID for the prefix list containing administrative CIDRs"
+}
+
 variable "ami_owner_id" {
   type        = string
   description = "The ID of the AMI owner"
@@ -141,11 +146,6 @@ variable "route53_available" {
 variable "service" {
   description = "The service name to be used when creating AWS resources"
   type        = string
-}
-
-variable "ssh_cidrs" {
-  description = "The SSH of the CIDR to be used"
-  type = list(string)
 }
 
 variable "ssh_keyname" {
