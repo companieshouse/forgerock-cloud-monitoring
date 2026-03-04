@@ -5,6 +5,18 @@ provider "aws" {
 
 terraform {
   backend "s3" {}
+
+  required_providers {
+    template = {
+      source = "hashicorp/template"
+      version = "2.2.0"
+    }
+
+    archive = {
+      source = "hashicorp/archive"
+      version = "2.7.1"
+    }
+  }
 }
 
 # module "prometheus" {
